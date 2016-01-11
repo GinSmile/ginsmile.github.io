@@ -1,0 +1,8 @@
+---
+layout: post
+title: "贪心"
+date: 2015-07-23 00:18
+comments: true
+published: false
+categories: Algorithm
+---

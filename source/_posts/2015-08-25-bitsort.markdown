@@ -1,0 +1,165 @@
+---
+layout: post
+title: "磁盘文件排序"
+date: 2015-08-25 16:48
+comments: true
+categories: Algorithm
+---
+
+这是《编程珠玑》第一章的一个小问题。
+该问题要给一个很大的磁盘文件排序。首先要弄明白该问题的输入输入，以及约束条件。
+
+ * 输入：一个最多包含n个正整数的文件，每个数都小于n，其中n＝10^7。如果在输入文件中有任何整数重复出现就是致命错误。没有其他数据与该整数相关联。
+ * 输出：按升序排列的输入整数的列表。
+ * 约束：最多有大约1MB的内存空间可用，有充足的磁盘存储空间可用。运行时间最多几分钟，运行时间为10s就不需要进一步优化了。
+ 
+ <!--more-->
+ 
+ 40趟算法
+---------
+40趟算法读入输入文件多次，写输出文件一次，不需要中间文件。
+
+* 第一次读取：0～249999之间的数，然后排序，输出
+* 第二次读取：250000～499999之间的数，然后排序，输出
+* ...
+
+每次读取所需要的内存大小为：250000*4/1024/1024 约为 0.95MB
+
+
+位排序算法
+--------
+位排序算法读入文件一次，写输出文件一次，不使用中间文件。这里，用一个10^7位长的内存来表示一个所有元素都小于10^7的非负整数集合。
+
+例如：{0,1,2,4,5,6} => 1 1 1 0 1 1 1 0 0 0 0     
+其中第0，1，2，4，5，6位为1
+
+这样，就可以用10^7位 => 10^7／8/1024/1024 约为 1.2MB 的内存来表示全部的数。
+
+* int[] arr = new int[10000000/32],创建一个大小为10000000bit的数组，用来存放数据。
+* 每读取一个数i，调用set(i)函数，将第i个位置1，直到全部读取完毕。
+* 从第一个数开始，依次调用test(i)，若返回值为1，输出i
+
+
+{% codeblock lang:java %}
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Random;
+
+/*
+ * 
+ * 编程珠玑，第一章的位排序
+ * 
+ * 输入：一个最多包含n个正整数的文件，每个数都小于n，其中n＝10^7。如果在输入文件中有任何整数重复出现就是致命错误。没有其他数据与该整数相关联。
+ * 输出：按升序排列的输入整数的列表。
+ * 约束：最多有大约1MB的内存空间可用，有充足的磁盘存储空间可用。运行时间最多几分钟，运行时间为10s就不需要进一步优化了。
+*/
+
+public class BitSort {
+	private static int N = 10000000;  //最多包含N个数，且每个数的范围都在0～10000000
+	private static int K = 9000000; //实际有K个数，K小于N
+	private static int BITSPERWORD = 32;
+	private static int SHIFT = 5;
+	private static int MASK = 0x1F; //0000 0000 0000 0000 0000 0000 0001 1111
+	private static String inputPath = "/Users/xujin/input.txt";	
+	private static String outputPath = "/Users/xujin/output.txt";		
+	private static int[] arr = new int[1 + N/BITSPERWORD];//把N位分成32个一份，一共 1 + N/32份。此时，需要的内存空间大小为：10000000/8/1024/1024 约为1.19MB，符合约束要求
+	
+	public static void setBit(int i){
+		arr[i>>SHIFT] |= (1<<(i&MASK)); //相当于 arr[i/32] = arr[i/32] | (1<<(i%32))
+	}
+	
+	public static int testBit(int i){
+		return arr[i>>SHIFT] & (1<<(i&MASK)); //相当于 arr[i/32] = arr[i/32] | (1<<(i%32))
+		
+	}
+	
+	public static void main(String[] args) throws IOException{
+		System.out.println("创建input.txt~");	
+		
+		//------------------0，建立input.txt文件,其中包含乱序的0～10^7之间的N个数-----------------//
+		//makeNums(K, inputPath);     //刚开始运行一遍就行，以后不用运行
+		
+		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+		System.out.println("开始计时...");
+		
+		
+		//-----------------从input.txt读取，然后再将有序数组写到output.txt-----------------//
+		System.out.println("开始读取input.txt~");
+		File file=new File(inputPath);
+        if(!file.exists()||file.isDirectory())
+            throw new FileNotFoundException();
+        BufferedReader br=new BufferedReader(new FileReader(file));
+        String temp=null;
+        temp=br.readLine();
+        while(temp!=null){
+        	setBit(Integer.parseInt(temp));
+        	temp = br.readLine();
+        }      
+        br.close();
+        System.out.println("读取完毕，位设置完毕~");
+
+        
+        //-----------------将排好序的数写入output.txt中-----------------//
+        System.out.println("开始写入output.txt~");
+        File file2=new File(outputPath);
+        if(!file2.exists())
+            file2.createNewFile();
+        FileOutputStream out=new FileOutputStream(file2,false);       
+        for(int i=0;i<N;i++){       	
+        	if(testBit(i) == 0) continue;
+        	else{
+        		StringBuffer sb=new StringBuffer();
+                sb.append(i+"\n");
+                out.write(sb.toString().getBytes("utf-8"));
+        	}          
+        }             
+        out.close();
+		
+		
+        long endMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+    	System.out.println("结束，一共耗时 " + (endMili - startMili) + "ms"); //最终结果大概10几秒，符合约束要求
+	}
+	
+	
+	
+	//返回一个在i～j的整数，包括i 和 j
+	public static int randint(int i, int j){
+		Random random = new Random();
+		return i + random.nextInt(j - i + 1);
+	}
+	
+	//首先生成一个文件，里面最多有N个数，都在0～10^7-1之间.这些数是乱序的。
+	public static void makeNums(int K, String path) throws IOException{
+		//生成N个乱序的无重复的数
+		int[] nums = new int[K];
+		for(int i=0; i<K; i++){
+			nums[i] = i;
+		}
+		for(int i=0; i<K; i++){
+			int randIndex = randint(i, K-1);			
+			//swap nums[i] and nums[randIndex]
+			int temp = nums[i];
+			nums[i] = nums[randIndex];
+			nums[randIndex] = temp;
+		}
+		
+		//写入input.txt
+		File file=new File(path);
+        if(!file.exists())
+            file.createNewFile();
+        FileOutputStream out=new FileOutputStream(file,false);        
+        for(int i=0;i<K;i++){    	
+            StringBuffer sb=new StringBuffer();
+            sb.append(nums[i]+"\n");
+            out.write(sb.toString().getBytes("utf-8"));
+        }      
+        
+        out.close();
+	}
+}
+
+{% endcodeblock %}

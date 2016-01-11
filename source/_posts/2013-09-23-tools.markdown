@@ -1,0 +1,27 @@
+---
+layout: post
+title: "我的利器"
+date: 2013-09-23 11:16
+comments: true
+categories: tools
+---
+
+古语有云：**工欲善其事，必先利其器**。   
+学习计算机也是这样， 总结最近几年学习计算机专业的经验，我把我认为非常有用的软件，网站，工具等做了下总结：
+> - Sublime Text，一款文本编辑器，跨平台，用起来非常舒服，可称之为神器。
+- Git，一个分布式的版本控制系统
+- GitHub， 用于使用Git版本控制系统项目的共享虚拟主机服务
+- MindManager，思维导图
+- VMware，虚拟机
+- Powerdesigner，数据库设计软件
+- Baidu Cloud，国内速度快，超稳定，容量大的网盘，太好用了！
+- MOOC，大规模开放在线课堂
+- Evernote，印象笔记，看课程做笔记就靠他了，其中的“马克飞象”扩展特别好用，可以用markdown语法些笔记
+- Octopress，写博客的神器
+- Raspberry Pi，树莓派，廉价低功耗Linux电脑，任你折腾
+- LaTeX，排版利器，写论文必会
+<!--more-->
+顺便说一句，最近用如下组合用的特别爽：
+> Octopress + GitHub + Evernote（马克飞象）
+
+Evernote（马克飞象）的跨平台，云同步，可以让我在Windows和Linux上编辑同一篇文章，Octopress+ GitHub Pages的黑客式写博客的方式就不用多说了。**简洁的Markdown语法，方便的印象笔记，让人欲罢不能**。

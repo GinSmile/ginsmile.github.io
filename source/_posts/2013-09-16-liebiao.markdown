@@ -1,0 +1,36 @@
+---
+layout: post
+title: "python列表推导式"
+date: 2013-09-16 21:05
+comments: true
+categories: python
+---
+
+真是超级喜欢这个语法，大赞!    
+最近在看《某科学的超电磁炮》，感觉婚后光子玩python玩的不错～～哈哈    
+<!--more-->
+
+####列表推导式能轻易完成复杂的工作
+先来一段有名的三行快排：
+
+    def qsort(L):
+        if len(L)<=0: return L
+        return qsort([x for x in L if x<L[0]]) + [x for x in L if x==L[0]] + qsort([x for x in L if x>L[0]])
+        
+    L=[1, 3, 4, 5, 6, 77, 23, 12]
+    L=qsort(L)
+    print L
+真是太劲爆了，短短三行，就把快排的思想显露无疑。下面来分析一下：       
+{% img right /images/pic/mypython.png 190 240 '婚后光子' '婚后光子' %}
+> `[x for x in L if x<L[0]]`指的是把L中小于L[0]的提取出来组成一个列表       
+> `[x for x in L if x==L[0]]`指的是把L中等于L[0]的提取出来组成一个列表       
+> `qsort([x for x in L if x>L[0]])`指的是把L中大于L[0]的提取出来组成一个列表    
+ 
+列表推导式不是真正的语句，是看起来像循环的表达式，即：*轻量级循环*。   
+    
+
+####列表推导式也可以推导出元组列表
+比如：
+    
+    [(x, y) for x in range(3) for y in range(3)]
+运行结果为：[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
