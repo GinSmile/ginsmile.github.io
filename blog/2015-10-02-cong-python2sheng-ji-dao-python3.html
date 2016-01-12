@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, This is keywords~~" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="目前Mac OS上面自带的Python是2.7版本的，最好不要卸载，因为很多系统内部的应用要用，所以就只能在不卸载2.7的情况下安装Python3。
+###0，关于两种Python版本共存的问题
+首先，要明白在终端运行Python的时候，是运行的/usr/local/bin/python。
+1~ xujin$which python&amp;#10;/usr/local/bin/python
+然后，看看这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Python2升级到Python3">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2015-10-02-cong-python2sheng-ji-dao-python3.html">
+<meta property="og:site_name" content="Jyo's Blog">
+<meta property="og:description" content="目前Mac OS上面自带的Python是2.7版本的，最好不要卸载，因为很多系统内部的应用要用，所以就只能在不卸载2.7的情况下安装Python3。
+###0，关于两种Python版本共存的问题
+首先，要明白在终端运行Python的时候，是运行的/usr/local/bin/python。
+1~ xujin$which python&amp;#10;/usr/local/bin/python
+然后，看看这">
+<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Python2升级到Python3">
+<meta name="twitter:description" content="目前Mac OS上面自带的Python是2.7版本的，最好不要卸载，因为很多系统内部的应用要用，所以就只能在不卸载2.7的情况下安装Python3。
+###0，关于两种Python版本共存的问题
+首先，要明白在终端运行Python的时候，是运行的/usr/local/bin/python。
+1~ xujin$which python&amp;#10;/usr/local/bin/python
+然后，看看这">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 从Python2升级到Python3 | Jyo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a007a8efad716708ac296c721099b0e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jyo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">風になる</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从Python2升级到Python3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-02T23:50:00+08:00" content="2015-10-02">
+              2015-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-10-02-cong-python2sheng-ji-dao-python3.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-10-02-cong-python2sheng-ji-dao-python3.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目前Mac OS上面自带的Python是2.7版本的，最好不要卸载，因为很多系统内部的应用要用，所以就只能在不卸载2.7的情况下安装Python3。</p>
+<p>###0，关于两种Python版本共存的问题</p>
+<p>首先，要明白在终端运行Python的时候，是运行的<code>/usr/local/bin/python</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ xujin$which python&#10;/usr/local/bin/python</span><br></pre></td></tr></table></figure>
+<p>然后，看看这个文件的类型，发现这仅仅是一个链接。因而，要改变Python的版本，只需要修改<code>/usr/local/bin/python</code>文件的的链接到就好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ xujin$ls -l /usr/local/bin/python&#10;lrwxr-xr-x  1 root  admin  67 10  2 15:53 /usr/local/bin/python -&#62; /System/Library/Frameworks/Python.framework/Versions/2.7/bin/python</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>###1，首先下载安装Python3</p>
+<p>有两种方法，很简单。我用的第一种。</p>
+<ul>
+<li>1，使用Homebrew，brew install python3，等待自动完成即可。</li>
+<li>2，去Python官网下载安装包安装 。</li>
+</ul>
+<p>###2，移动Python3到系统目录</p>
+<ul>
+<li>首先，确认Homebrew下载的Python的安装位置，我的安装在了 <code>/usr/local/Cellar/python3</code>上，具体细节还要看版本。所以每次安装好了之后都要确认安装的位置。</li>
+<li>然后，把下载的 Python 3.4 移到<code>/System/Library/Frameworks/Python.framework/Versions/3.4</code>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/Cellar/python3/3.4.1_1/Frameworks/Python.framework/Versions/3.4 /System/Library/Frameworks/Python.framework/Versions/`</span><br></pre></td></tr></table></figure>
+<p>截止到目前，<code>/System/Library/Frameworks/Python.framework/Versions/</code>文件夹中，会有所有的Python版本，如2.7，3.4，还有个Current代表当前版本。</p>
+<p>###3，配置<br>然后是配置系统的各种链接2，这里参考了网上其他人写的shell脚本，只是稍有修改。</p>
+<p>保存下面的脚本a.sh，并运行<code>./a.sh</code>，配置完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;sudo -i #&#24471;&#21040;&#36229;&#32423;&#26435;&#38480;&#10;new_version=&#34;3.4&#34;&#10;&#10;PYPATH=/System/Library/Frameworks/Python.framework/Versions/&#34;$new_version&#34;&#10;#&#31532;2&#27493;&#25913;&#21464;&#29992;&#25143;&#30446;&#24405;&#30340;&#29992;&#25143;&#32452;&#10;echo &#34;chown..&#34;&#10;chown -R root:wheel $&#123;PYPATH&#125;&#10;#&#31532;3&#27493; &#21024;&#38500;&#21407;&#26469;&#30340;&#38142;&#25509;&#10;echo &#34;del..&#34;&#10;rm /System/Library/Frameworks/Python.framework/Versions/Current&#10;#&#31532;4&#27493;&#37325;&#26032;&#38142;&#25509;&#21040;&#26368;&#26032;&#29256;&#26412;&#30340;python&#10;echo &#34;ln..&#34;&#10;ln -s $&#123;PYPATH&#125; /System/Library/Frameworks/Python.framework/Versions/Current&#10;#&#31532;5&#27493;&#21024;&#38500;&#26087;&#30340;&#21629;&#20196;&#31526;&#21495;&#38142;&#25509;&#10;echo &#34;rm..&#34;&#10;rm /usr/bin/&#123;pydoc,python,pythonw,python-config&#125;&#10;echo &#34;ln bin..&#34;&#10;#&#31532;6&#27493;&#37325;&#26032;&#24314;&#31435;&#26032;&#30340;&#21629;&#20196;&#31526;&#21495;&#38142;&#25509;&#10;ln -s $&#123;PYPATH&#125;/bin/pydoc&#34;$new_version&#34; /usr/bin/pydoc&#10;ln -s $&#123;PYPATH&#125;/bin/python&#34;$new_version&#34; /usr/bin/python&#10;ln -s $&#123;PYPATH&#125;/bin/pythonw&#34;$new_version&#34; /usr/bin/pythonw&#10;ln -s $&#123;PYPATH&#125;/bin/python&#34;$new_version&#34;m-config /usr/bin/python-config&#10;&#10;python_param_list=`cd /usr/local/bin &#38;&#38; ls -al |grep &#34;Python&#34;|awk &#39;ORS=&#34; &#34; &#123;print $9&#125;&#39;`&#10;#&#31532;7&#27493;&#20462;&#22797;&#20854;&#20182;&#38142;&#25509;&#10;for i in $python_param_list;do&#10;  echo &#34;info: $i&#34;&#10;  rm -f /usr/local/bin/$&#123;i&#125;&#10;  ln -sv /System/Library/Frameworks/Python.framework/Versions/&#34;$new_version&#34;/bin/$&#123;i&#125; /usr/local/bin/$&#123;i&#125;&#10;done&#10;&#10;#&#31532;8&#27493;.&#29615;&#22659;&#21464;&#37327;&#35201;&#20462;&#25913;&#20026;&#26368;&#26032;&#30340;&#29256;&#26412;&#21495;&#10;echo &#39;export PATH=/System/Library/Frameworks/Python.framework/Versions/&#34;$new_version&#34;/bin:$&#123;PATH&#125;&#39; &#62;&#62; ~/.bashrc&#10;&#10;exit #&#36864;&#20986;&#36229;&#32423;&#26435;&#38480;</span><br></pre></td></tr></table></figure>
+<p>###4，完成<br>此时新开一个终端，输入<code>Python --version</code>，会得到3.4的结果。如果想回到2.7，只要更改shell脚本中的new_version为2.7即可。</p>
+<p>#####参考资料</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/wirelessqa/article/details/23261723" target="_blank" rel="external">csdn</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015-10-01-liang-ge-zhan-shi-xian-yi-ge-dui-lie.html" rel="next" title="两个栈实现一个队列">
+                <i class="fa fa-chevron-left"></i> 两个栈实现一个队列
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015-10-16-er-cha-shu-bian-li-he-shen-du-wen-ti.html" rel="prev" title="二叉树遍历和深度问题">
+                二叉树遍历和深度问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2015-10-02-cong-python2sheng-ji-dao-python3.html"
+     data-title="从Python2升级到Python3"
+     data-content=""
+     data-url="http://ginsmile.github.io//blog/2015-10-02-cong-python2sheng-ji-dao-python3.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2015-10-02-cong-python2sheng-ji-dao-python3.html"
+           data-title="从Python2升级到Python3" data-url="http://ginsmile.github.io//blog/2015-10-02-cong-python2sheng-ji-dao-python3.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpeg"
+               alt="Jyo Shinn" />
+          <p class="site-author-name" itemprop="name">Jyo Shinn</p>
+          <p class="site-description motion-element" itemprop="description">風立ちぬ、いざ生きめやも</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ginsmile" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/JyoShinn" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-cloud"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jyo Shinn</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ginsmile"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

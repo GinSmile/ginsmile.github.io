@@ -1,0 +1,866 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, This is keywords~~" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇以Github上最热门的MaterialDesign库，MaterialDesignLibrary来介绍怎样使用Android Sudio导入开源项目的，如果你和我一样刚刚从Eclipse转到AS，那本篇文章非常适合你。
+如果不引入任何第三方库，不做自动化分渠道打包等操作，那可以在完全不了解Gradle的情况下进行Android项目的开发。但如果要想导入Github上的热门项目，必须首先熟悉G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用 Android Studio 导入开源项目以及常见错误的解决办法">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html">
+<meta property="og:site_name" content="Jyo's Blog">
+<meta property="og:description" content="本篇以Github上最热门的MaterialDesign库，MaterialDesignLibrary来介绍怎样使用Android Sudio导入开源项目的，如果你和我一样刚刚从Eclipse转到AS，那本篇文章非常适合你。
+如果不引入任何第三方库，不做自动化分渠道打包等操作，那可以在完全不了解Gradle的情况下进行Android项目的开发。但如果要想导入Github上的热门项目，必须首先熟悉G">
+<meta property="og:image" content="http://ginsmile.github.io/images/pic/gradle_test.png">
+<meta property="og:image" content="http://ginsmile.github.io/images/pic/gradle_test2.png">
+<meta property="og:image" content="http://ginsmile.github.io/images/pic/gradle_mdl.png">
+<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何用 Android Studio 导入开源项目以及常见错误的解决办法">
+<meta name="twitter:description" content="本篇以Github上最热门的MaterialDesign库，MaterialDesignLibrary来介绍怎样使用Android Sudio导入开源项目的，如果你和我一样刚刚从Eclipse转到AS，那本篇文章非常适合你。
+如果不引入任何第三方库，不做自动化分渠道打包等操作，那可以在完全不了解Gradle的情况下进行Android项目的开发。但如果要想导入Github上的热门项目，必须首先熟悉G">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 如何用 Android Studio 导入开源项目以及常见错误的解决办法 | Jyo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a007a8efad716708ac296c721099b0e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jyo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">風になる</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何用 Android Studio 导入开源项目以及常见错误的解决办法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-24T00:54:00+08:00" content="2015-05-23">
+              2015-05-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇以Github上最热门的MaterialDesign库，<a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank" rel="external">MaterialDesignLibrary</a>来介绍怎样使用Android Sudio导入开源项目的，如果你和我一样刚刚从Eclipse转到AS，那本篇文章非常适合你。</p>
+<p>如果不引入任何第三方库，不做自动化分渠道打包等操作，那可以在完全不了解Gradle的情况下进行Android项目的开发。但如果要想导入Github上的热门项目，必须首先熟悉Gradle。</p>
+<p>###1. Gradle</p>
+<blockquote>
+<p>Gradle是以Groovy为基础，面向java应用，基于DSL语法的自动化构建工具。是google引入，替换ant和maven的新工具，其依赖兼容maven和ivy。</p>
+</blockquote>
+<p>简单来说，Gradle就是Andriod Studio引入的一种自动构建工程的工具，很好的解决了Android项目的构建。大概能解决以下开发过程中的痛点：</p>
+<ul>
+<li><strong>不用把第三方库下载下来</strong>。以前用Eclipse必须得把第三方库下载下来，然后在自己的项目中引入那个第三方library才行。但使用Gradle，几行代码就搞定第三方库的依赖，降低了耦合性。</li>
+<li><strong>不用手动修改N次代码，把代码打N个包发到N个市场</strong>。以前可能需要针对不同的渠道发不同的APK文件包，现在只需要在gradle中的几行代码就能一次生成多个渠道包。具体可参考此文章：<a href="http://ghui.me/blog/20150310/create-several-variants-of-an-app-in-gradle/" target="_blank" rel="external">如何通过Gradle实现一套代码开发不同特性的APK</a>。</li>
+</ul>
+<a id="more"></a>
+<p>如果你用AS新建一个项目，那此项目的默认项目结构如图所示，图中打开的文件是TestMe/build.gradle，已经给出了每句话的含义。</p>
+<img src="/images/pic/gradle_test.png" class="center" title="gradle gradle">
+<p>图中新建项目名为TestMe，使用了Project的目录结构。此目录下可见以下几个gradle文件，分别是：</p>
+<ul>
+<li>TestMe/build.gradle，全局gradle，在这个文件里的设置会在整个项目里通用。</li>
+<li>TestMe/app/build.gradle，模块的gradle，仅在app模块通用。</li>
+<li>TestMe/settings.gradle，用于指定哪个目录是模块model。里面的内容默认是<code>include &#39;:app&#39;</code>，表示app这个文件夹是一个模块。</li>
+</ul>
+<p>而TestMe/app/build.gradle文件内容如图所示，具体解释参见图中注释。</p>
+<img src="/images/pic/gradle_test2.png" class="center" title="gradle gradle">
+<p>###2. 导入MaterialDesignLibrary项目<br>我们的目标是把MaterialDesignLibrary项目在AS里面成功运行，并在手机上运行成功。</p>
+<p>####2.1 第一步<br>首先，用git的clone命令将<a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank" rel="external">MaterialDesignLibrary</a>下载到本地。</p>
+<p>####2.2 第二步<br>进入AS，File-&gt;Import Project，然后找到MaterialDesignLibrary目录，双击该目录下的build.gradle即可导入项目。</p>
+<p>####2.3 第三步<br><img src="/images/pic/gradle_mdl.png" class="right" width="300" title="gradle gradle"></p>
+<p>可以看导入好的Github上的MaterialDesignLibrary项目包含两个module，包括MaterialDesignDemo和一个MaterialDesign。</p>
+<ul>
+<li>MaterialDesign的build.gradle文件第一行为：<code>apply plugin: &#39;com.android.library&#39;</code>，表示这是一个Library。</li>
+<li>MaterialDesignDemo的build.gradle文件第一行为：<code>apply plugin: &#39;com.android.application&#39;</code>，表示这是一个应用。</li>
+</ul>
+<p>他的这个项目使用的是引用本地已有的MaterialDesign库，而本文第三部分要讲的是引用网上中心库的MaterialDesign库。两种方法都可以，但后一种更加方便更常用，第一种方法不太常用。<br>第二步之后，可能会出现很多错，通常是因为配置问题，这部分详见本文下面的常见错误。<br>注意：一定要确保根目录下的setting.gradle里面是<code>include &#39;:MaterialDesign&#39;, &#39;:MaterialDesignDemo&#39;</code>。表示以上两个文件夹都是module。</p>
+<p>###3. 在自己的项目中引用MaterialDesignLibrary<br>还是之前的TestMe项目，只需要在TestMe/app/build.gradle中的dependencies中加入<code>compile &#39;com.github.navasmdc:MaterialDesign:1.5@aar&#39;</code>即可，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;&#10;    // &#32534;&#35793;libs&#30446;&#24405;&#19979;&#30340;&#25152;&#26377;jar&#21253;&#10;    compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;]) //&#22810;&#20010;&#25991;&#20214;&#10;    //compile files(&#39;libs/foo.jar&#39;)   //&#21333;&#20010;&#25991;&#20214;&#36825;&#26679;&#20889;&#10;    compile &#39;com.android.support:appcompat-v7:22.0.0&#39; //&#32534;&#35793;&#31532;&#19977;&#26041;&#24211;&#10;    compile &#39;com.github.navasmdc:MaterialDesign:1.5@aar&#39;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>###4. 常见错误<br>AS在导入开源的项目或者第三方库的时候经常会出现的错误如下。其实很多都是各种工具的版本问题。</p>
+<p>####4.1</p>
+<blockquote>
+<p>Error:failed to find Build Tools revision 21.1.1<br><a href="install.build.tools">Install Build Tools 21.1.1 and sync project</a></p>
+</blockquote>
+<p>是因为该开源库对应的Build Tools的版本你的AS里面没有。解决方法是点击他的链接进行下载。或者更改每个model里面的build.gradle文件中的<code>buildToolsVersion &quot;21.1.1&quot;</code>为本机里面有的Build Tolls版本。</p>
+<p>####4.2</p>
+<blockquote>
+<p>Error:failed to find target android-18 : /Users/xujin/develop/adt-bundle-mac-x86_64-20140702/sdk    </p>
+<p><a href="install.android.platform">Install missing platform(s) and sync project</a></p>
+</blockquote>
+<p>是因为该开源库对应的android sdk的版本你的机器里面没有。解决方法同上，要么下载，要么改改配置。更改每个model里面的build.gradle文件中的<code>compileSdkVersion 21</code>为本机里面有的sdk版本。</p>
+<p>####4.3</p>
+<blockquote>
+<p>Error:(44, 30) 错误: -source 1.6 中不支持 diamond 运算符 (请使用 -source 7 或更高版本以启用 diamond 运算符)</p>
+</blockquote>
+<p>出错的原因是因为代码中有 <code>List&lt;Car&gt;  cars = new ArrayList&lt;&gt;();</code>，java在1.7引入了钻石运算符<code>&lt;&gt;</code>,解决办法有两种。一是更改编译的java sdk版本，而是将出错代码改为<code>List&lt;Car&gt;  cars = new ArrayList&lt;Car&gt;();</code></p>
+<p>####4.4</p>
+<blockquote>
+<p>Error:(37) No resource identifier found for attribute ‘checked’ in package ‘com.gc.materialdesign’</p>
+</blockquote>
+<p>是因为第37行的<code>materialdesign:checked=&quot;true&quot;</code>，命名空间materialdesign里面没有checked属性，改成check即可，代码如下。（之前遇到过，姑且说说。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;com.gc.materialdesign.views.CheckBox&#10;                android:id=&#34;@+id/checkBox&#34;&#10;                android:layout_width=&#34;wrap_content&#34;&#10;                android:layout_height=&#34;wrap_content&#34;&#10;                android:layout_centerInParent=&#34;true&#34;&#10;                android:background=&#34;#1E88E5&#34;&#10;                materialdesign:check=&#34;true&#34;&#10;                 /&#62;</span><br></pre></td></tr></table></figure>
+<p>###参考资料</p>
+<ul>
+<li><a href="http://www.crowbarsolutions.com/importing-libraries-into-android-studio/" target="_blank" rel="external">importing-libraries-into-android-studio</a></li>
+<li><a href="http://stormzhang.com/devtools/2014/12/18/android-studio-tutorial4/" target="_blank" rel="external">Android Studio系列教程四–Gradle基础</a></li>
+<li><a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank" rel="external">MaterialDesignLibrary</a></li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015-03-17-learn-matlab.html" rel="next" title="matlab学习">
+                <i class="fa fa-chevron-left"></i> matlab学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015-06-17-di-gui-yu-fen-zhi.html" rel="prev" title="递归与分治问题">
+                递归与分治问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html"
+     data-title="如何用 Android Studio 导入开源项目以及常见错误的解决办法"
+     data-content=""
+     data-url="http://ginsmile.github.io//blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html"
+           data-title="如何用 Android Studio 导入开源项目以及常见错误的解决办法" data-url="http://ginsmile.github.io//blog/2015-05-24-how-to-import-opensource-project-and-solve-errors.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpeg"
+               alt="Jyo Shinn" />
+          <p class="site-author-name" itemprop="name">Jyo Shinn</p>
+          <p class="site-description motion-element" itemprop="description">風立ちぬ、いざ生きめやも</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ginsmile" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/JyoShinn" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-cloud"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jyo Shinn</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ginsmile"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

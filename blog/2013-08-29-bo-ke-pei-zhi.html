@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, This is keywords~~" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="以下介绍了我的Octopress博客的配置情况。   
+0.添加主题Octopress有很多精美的主题，在这里可以看到很多：http://opthemes.com/ 。本博客使用了greyshade主题，该主题的作者是Shashank Mehta，主题的介绍页面在http://shashankmehta.in/archive/2012/greyshade.html。这里介绍了greyshade主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octopress博客配置">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2013-08-29-bo-ke-pei-zhi.html">
+<meta property="og:site_name" content="Jyo's Blog">
+<meta property="og:description" content="以下介绍了我的Octopress博客的配置情况。   
+0.添加主题Octopress有很多精美的主题，在这里可以看到很多：http://opthemes.com/ 。本博客使用了greyshade主题，该主题的作者是Shashank Mehta，主题的介绍页面在http://shashankmehta.in/archive/2012/greyshade.html。这里介绍了greyshade主题">
+<meta property="og:image" content="http://ginsmile.github.io/images/about_shot.png">
+<meta property="og:image" content="http://ginsmile.github.io/images/social_shot.png">
+<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Octopress博客配置">
+<meta name="twitter:description" content="以下介绍了我的Octopress博客的配置情况。   
+0.添加主题Octopress有很多精美的主题，在这里可以看到很多：http://opthemes.com/ 。本博客使用了greyshade主题，该主题的作者是Shashank Mehta，主题的介绍页面在http://shashankmehta.in/archive/2012/greyshade.html。这里介绍了greyshade主题">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Octopress博客配置 | Jyo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a007a8efad716708ac296c721099b0e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jyo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">風になる</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Octopress博客配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-08-29T07:16:00+08:00" content="2013-08-28">
+              2013-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Octopress/" itemprop="url" rel="index">
+                    <span itemprop="name">Octopress</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013-08-29-bo-ke-pei-zhi.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-08-29-bo-ke-pei-zhi.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下介绍了我的Octopress博客的配置情况。   </p>
+<h2 id="0-_u6DFB_u52A0_u4E3B_u9898"><a href="#0-_u6DFB_u52A0_u4E3B_u9898" class="headerlink" title="0.添加主题"></a>0.添加主题</h2><p>Octopress有很多精美的主题，在这里可以看到很多：<a href="http://opthemes.com/" target="_blank" rel="external">http://opthemes.com/</a> 。本博客使用了greyshade主题，该主题的作者是<a href="http://shashankmehta.in/" target="_blank" rel="external">Shashank Mehta</a>，主题的介绍页面在<a href="http://shashankmehta.in/archive/2012/greyshade.html。" target="_blank" rel="external">http://shashankmehta.in/archive/2012/greyshade.html。</a><br>这里介绍了greyshade主题的安装：<br>假设你已经安装好了默认主题，并且当前在octopress目录下，只需要输入以下命令即可：<br>    $ git clone git@github.com:shashankmehta/greyshade.git .themes/greyshade<br>    $ echo “\$greyshade: color;” &gt;&gt; sass/custom/_colors.scss<br>    $ rake “install[greyshade]”<br>    $ rake generate<br><a id="more"></a></p>
+<h2 id="1-_u6DFB_u52A0About_Me_u9875_u9762"><a href="#1-_u6DFB_u52A0About_Me_u9875_u9762" class="headerlink" title="1.添加About Me页面"></a>1.添加About Me页面</h2><p>首先创建about页面：<code>rake new_page[&quot;about&quot;]</code>，就会在创建source/about目录的同时创建index.markdown,使用编辑器编辑即可。<br>然后打开source/_includes/custom/navigation.html，修改成如下：<br>    <ul class="main-navigation"><br>      <li><a href="/">Blog</a></li><br>      <li><a href="/blog/archives">Archives</a></li><br>      <li><a href="/about">About Me</a></li><br>    </ul><br><img src="/images/about_shot.png" class="right" width="247" height="130" title="image images"><br>然后使用<code>rake generate</code>命令，就会产生相应的静态页面。使用<code>rake preview</code>预览即可。<br>如果想在username.github.io中看到，不要忘了<code>rake deploy</code>以及git命令提交到github。   </p>
+<!--more-->
+<h2 id="2-_u6DFB_u52A0_u793E_u4F1A_u5316_u5206_u4EAB_u6309_u94AE"><a href="#2-_u6DFB_u52A0_u793E_u4F1A_u5316_u5206_u4EAB_u6309_u94AE" class="headerlink" title="2.添加社会化分享按钮"></a>2.添加社会化分享按钮</h2><p>只需要添加著名的社会化分享按钮addthis.com即可。去<a href="https://www.addthis.com/get/sharing#.Uh4X56EW3nM" target="_blank" rel="external">addthis.com</a>注册,获取代码。<br>将代码粘贴到source/_includes/post/sharing.html中。例如我的sharing.html文件为：<br>    <div class="sharing"><br>        <!-- AddThis Button BEGIN --><br>        <div class="addthis_toolbox addthis_default_style addthis_32x32_style"><br>            <a class="addthis_button_sinaweibo"></a><br>            <a class="addthis_button_twitter"></a><br>            <a class="addthis_button_facebook"></a><br>            <a class="addthis_button_pinterest_share"></a><br>            <a class="addthis_button_google_plusone_share"></a><br>            <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a><br>        </div><br>        <script type="text/javascript">var addthis_config = {“data_track_addressbar”:true};</script><br>        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-521dd13b3fa550d0"></script><br>        <!-- AddThis Button END --></div></p>
+<h2 id="3-_u6DFB_u52A0_u793E_u4F1A_u5316_u8BC4_u8BBA"><a href="#3-_u6DFB_u52A0_u793E_u4F1A_u5316_u8BC4_u8BBA" class="headerlink" title="3.添加社会化评论"></a>3.添加社会化评论</h2><p>Octopress已经提供了一个评论插件，名为Disqus，我们只需要到Disqus注册帐号，在注册的时候输入网站域名（username.github.io即可）。注册时的shortname很有用，下面代码中要修改的就是shortname！！注册成功后修改octopress目录下的_config.yml文件：</p>
+<pre><code>#Disqus Comments
+disqus_short_name: shortname
+disqus_show_comment_count: true
+</code></pre><p><em>另外，这里注意，在修改_config.yml的时候，一定要注意冒号后面有个空格，否则在<code>rake generate</code>的时候会有解析错误</em><br>最重要的一点，_config.yml文件修改好之后必须generate之后才能在本地preview到。而其他文件，比如post了一个新的文章，如果处在preview状态，刷新一下localhost:4000会立马看到。</p>
+<h2 id="4-_u6DFB_u52A0_u65B0_u6D6A_u5FAE_u535A_u652F_u6301"><a href="#4-_u6DFB_u52A0_u65B0_u6D6A_u5FAE_u535A_u652F_u6301" class="headerlink" title="4.添加新浪微博支持"></a>4.添加新浪微博支持</h2><p>原始的greyshade主题不支持新浪微博，这里稍加修改，即可在页面左下角显示新浪微博的按钮。本修改方法来自于<a href="http://www.imallen.com/blog/2013/05/12/add-support-for-weibo-and-dribbble-to-greyshade.html" target="_blank" rel="external">allenhsu</a>，在这里向作者表示感谢。<br><img src="/images/social_shot.png" class="left" width="282" height="114" title="image images">     </p>
+<p>首先，在sass/parts/_header.scss文件中去掉第316行,<code>margin-right: 15px;</code>更改为：<br>    margin-right: 5px;<br>    margin-bottom: 15px;<br>然后，还是在上一个文件里，在320行往后添加weibo相关代码，最终代码段如下：<br>            &amp;:hover{<br>                    opacity: 1;<br>                }<br>                &amp;.weibo{<br>                    background: image-url(‘social/weibo.png’) center no-repeat #e32529;<br>                    border: 1px solid #e32529;<br>                    &amp;:hover{<br>                      border: 1px solid darken(#e32529, 10%);<br>                    }<br>                      }<br>                &amp;.facebook{<br>                    background: image-url(‘social/facebook.png’) center no-repeat #3B5998;<br>                    border: 1px solid #3B5998;<br>                    &amp;:hover{<br>                        border: 1px solid darken(#3B5998, 10%);<br>                    }<br>                }<br>第三步，在source/_includes/header.html中，修改代码，在类为social的div下加上如下代码：<br>    <div class="social"><br>            <br>最后，不要忘了在source/images/social文件夹下添加weibo.png图片，可以直接到我的github<a href="https://github.com/GinSmile/ginsmile.github.io/tree/03f65a6acf8b00988c294b01c701abfbfedb41a1/source/images/social/weibo.png" target="_blank" rel="external">下载</a>。<br>如果还不清楚，可在我的github中查看修改过程。点击这个链接：<a href="https://github.com/GinSmile/ginsmile.github.io/commit/03f65a6acf8b00988c294b01c701abfbfedb41a1" target="_blank" rel="external">commit 添加博文：博客配置，添加新浪添加微博支持</a>,由于我没有把以波浪结尾的临时文件（*~）添加到gitignore，这里有点乱，读者大可忽略所有以波浪线为结尾的文件改动。</div></p>
+<h2 id="5-imagepop_plugin"><a href="#5-imagepop_plugin" class="headerlink" title="5.imagepop plugin"></a>5.imagepop plugin</h2><p>这是一个添加图片的插件，可以按照比例缩放图片，点击图片可以查看原图，项目地址在<a href="https://bitbucket.org/fudanchii/imgpop/src/2fc043b1713e5de401edb0eea8639502bcc250a8?at=default" target="_blank" rel="external">imgpop</a><br>这里重复一下安装过程：   </p>
+<blockquote>
+<p>在<code>octopress/Gemfile</code>中添加以下代码，就可以得到相应依赖：<br>        gem ‘erubis’<br>        gem ‘mini_magick’<br>运行<code>bundle install</code>,安装相应依赖<br>将开源项目中的<code>_style.scss</code>中的内容添加到<code>octopress/sass/custom/_styles.scss</code>中<br>将开源项目中plugins中的两个文件复制<code>octopress/plugins</code>文件夹下<br>将开源项目中的imgpop.js文件复制<code>octopress</code>文件夹下<br>ok~~</p>
+</blockquote>
+<h2 id="u53C2_u8003_u8D44_u6599_uFF1A"><a href="#u53C2_u8003_u8D44_u6599_uFF1A" class="headerlink" title="参考资料："></a>参考资料：   </h2><blockquote>
+<p><a href="https://github.com/shashankmehta/greyshade" target="_blank" rel="external">greyshade</a><br><a href="http://www.yanjiuyanjiu.com/blog/20130402/" target="_blank" rel="external">yanjiuyanjiu.com</a><br><a href="http://zonyitoo.github.io/blog/2012/04/14/octopresszhu-ti-ji.markdown/" target="_blank" rel="external">zonyitoo.github.io</a><br><a href="https://bitbucket.org/fudanchii/imgpop/src/2fc043b1713e5de401edb0eea8639502bcc250a8?at=default" target="_blank" rel="external">imgpop</a>  </p>
+</blockquote>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013-08-29-yong-github-pageshe-octopressda-jian-bo-ke.html" rel="next" title="用GitHub Pages和Octopress搭建博客">
+                <i class="fa fa-chevron-left"></i> 用GitHub Pages和Octopress搭建博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013-08-29-octopressbo-ke-ji-qiao.html" rel="prev" title="Octopress博客技巧">
+                Octopress博客技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2013-08-29-bo-ke-pei-zhi.html"
+     data-title="Octopress博客配置"
+     data-content=""
+     data-url="http://ginsmile.github.io//blog/2013-08-29-bo-ke-pei-zhi.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2013-08-29-bo-ke-pei-zhi.html"
+           data-title="Octopress博客配置" data-url="http://ginsmile.github.io//blog/2013-08-29-bo-ke-pei-zhi.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpeg"
+               alt="Jyo Shinn" />
+          <p class="site-author-name" itemprop="name">Jyo Shinn</p>
+          <p class="site-description motion-element" itemprop="description">風立ちぬ、いざ生きめやも</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ginsmile" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/JyoShinn" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-cloud"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-_u6DFB_u52A0_u4E3B_u9898"><span class="nav-text">0.添加主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_u6DFB_u52A0About_Me_u9875_u9762"><span class="nav-text">1.添加About Me页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_u6DFB_u52A0_u793E_u4F1A_u5316_u5206_u4EAB_u6309_u94AE"><span class="nav-text">2.添加社会化分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_u6DFB_u52A0_u793E_u4F1A_u5316_u8BC4_u8BBA"><span class="nav-text">3.添加社会化评论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-_u6DFB_u52A0_u65B0_u6D6A_u5FAE_u535A_u652F_u6301"><span class="nav-text">4.添加新浪微博支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-imagepop_plugin"><span class="nav-text">5.imagepop plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599_uFF1A"><span class="nav-text">参考资料：   </span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jyo Shinn</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ginsmile"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

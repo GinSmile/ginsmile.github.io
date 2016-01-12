@@ -1,0 +1,884 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, This is keywords~~" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="####1，构造数独有两种方式可以用来构造数独。
+#####1.1， 置换法(1) 首先生成一个3*3的任意矩阵B5(2) 把整个数独的各个小矩阵命名为B1….B9    
+ B1 B2 B3 B4 B5 B6 B7 B8 B9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOP1.15 数独问题">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2015-10-28-shu-du-wen-ti.html">
+<meta property="og:site_name" content="Jyo's Blog">
+<meta property="og:description" content="####1，构造数独有两种方式可以用来构造数独。
+#####1.1， 置换法(1) 首先生成一个3*3的任意矩阵B5(2) 把整个数独的各个小矩阵命名为B1….B9    
+ B1 B2 B3 B4 B5 B6 B7 B8 B9">
+<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOP1.15 数独问题">
+<meta name="twitter:description" content="####1，构造数独有两种方式可以用来构造数独。
+#####1.1， 置换法(1) 首先生成一个3*3的任意矩阵B5(2) 把整个数独的各个小矩阵命名为B1….B9    
+ B1 B2 B3 B4 B5 B6 B7 B8 B9">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> BOP1.15 数独问题 | Jyo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a007a8efad716708ac296c721099b0e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jyo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">風になる</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                BOP1.15 数独问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-28T08:05:00+08:00" content="2015-10-28">
+              2015-10-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Algorithm/BOP/" itemprop="url" rel="index">
+                    <span itemprop="name">BOP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-10-28-shu-du-wen-ti.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-10-28-shu-du-wen-ti.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>####1，构造数独<br>有两种方式可以用来构造数独。</p>
+<p>#####1.1， 置换法<br>(1) 首先生成一个3*3的任意矩阵B5<br>(2) 把整个数独的各个小矩阵命名为B1….B9    </p>
+<p> B1 B2 B3<br> B4 B5 B6<br> B7 B8 B9<br> <a id="more"></a></p>
+<p>(3)，通过置换列的方法，利用B5，把B2和B8填好<br>(4)，通过置换行的方法，利用B5，把B4和B6填好<br>(5)，通过置换列的方法，利用B4，把B1和B7填好<br>(6)，通过置换列的方法，利用B6，把B3和B9填好      </p>
+<pre><code>*                i g h|c a b|f d e
+*                c a b|f d e|i g h
+*                f d e|i g h|c a b
+*                -----------------
+*                g h i|a b c|d e f
+*                a b c|d e f|g h i
+*                d e f|g h i|a b c
+*                -----------------
+*                h i g|e f d|b c a
+*                b c a|h i g|e f d
+*                e f d|b c a|h i g
+</code></pre><p>这种方法比较简单，难点主要在复制的时候要注意各个索引的大小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BOP_1_15_Sudoku</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> WIDTH = <span class="number">9</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String...args)</span></span>&#123;</span><br><span class="line">		CopyOfBOP_1_15_Sudoku sudoku = <span class="keyword">new</span> CopyOfBOP_1_15_Sudoku();</span><br><span class="line">		sudoku.generateValidMatrix();<span class="comment">//置换法，生成数独的初始状态</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*-----------------------------利用小矩阵生成大矩阵的方式生成数独初始状态---------------------------*/</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] generateValidMatrix() &#123;</span><br><span class="line">		<span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[WIDTH][WIDTH];</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//generate an random vector,named smallV,[1,2,3,4,5,6,7,8,9]</span></span><br><span class="line">		<span class="keyword">int</span>[] smallV = <span class="keyword">new</span> <span class="keyword">int</span>[WIDTH];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; smallV.length; i++)&#123;</span><br><span class="line">			smallV[i] = i + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Random ran = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; smallV.length; i++)&#123;</span><br><span class="line">			<span class="keyword">int</span> randomIndex = ran.nextInt(WIDTH);</span><br><span class="line">			<span class="keyword">int</span> temp = smallV[i];</span><br><span class="line">			smallV[i] = smallV[randomIndex];</span><br><span class="line">			smallV[randomIndex] = temp;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//映射到matrix的相应的B4位置上</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">3</span> + i/<span class="number">3</span>][i%<span class="number">3</span> + <span class="number">3</span>] = smallV[i];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 * 填B2</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">			matrix[i][<span class="number">3</span>] = matrix[i + <span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">			matrix[i][<span class="number">4</span>] = matrix[i + <span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line">			matrix[i][<span class="number">5</span>] = matrix[i + <span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//填B8</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">6</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			matrix[i][<span class="number">3</span>] = matrix[i - <span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">			matrix[i][<span class="number">4</span>] = matrix[i - <span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">			matrix[i][<span class="number">5</span>] = matrix[i - <span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 * 填B4</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">3</span>][i] = matrix[<span class="number">5</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">4</span>][i] = matrix[<span class="number">3</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">5</span>][i] = matrix[<span class="number">4</span>][i + <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//填B6</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">6</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">3</span>][i] = matrix[<span class="number">4</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">4</span>][i] = matrix[<span class="number">5</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">5</span>][i] = matrix[<span class="number">3</span>][i - <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 *填B1</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">0</span>][i] = matrix[<span class="number">2</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">1</span>][i] = matrix[<span class="number">0</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">2</span>][i] = matrix[<span class="number">1</span>][i + <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//填B3</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">6</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">0</span>][i] = matrix[<span class="number">1</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">1</span>][i] = matrix[<span class="number">2</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">2</span>][i] = matrix[<span class="number">0</span>][i - <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 *填B7</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">6</span>][i] = matrix[<span class="number">8</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">7</span>][i] = matrix[<span class="number">6</span>][i + <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">8</span>][i] = matrix[<span class="number">7</span>][i + <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//填B9</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">6</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			matrix[<span class="number">6</span>][i] = matrix[<span class="number">7</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">7</span>][i] = matrix[<span class="number">8</span>][i - <span class="number">3</span>];</span><br><span class="line">			matrix[<span class="number">8</span>][i] = matrix[<span class="number">6</span>][i - <span class="number">3</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"最开始生成的终盘状态:"</span>);</span><br><span class="line">		printMatrix(matrix);</span><br><span class="line">		<span class="keyword">return</span> matrix;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//打印数独</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>&#123;</span><br><span class="line">		System.out.println();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(matrix[i][j] == <span class="number">0</span>) </span><br><span class="line">					System.out.print(<span class="string">"* "</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					System.out.print(matrix[i][j] + <span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####1.2，深度优先搜索<br>从左上到右下依次找到合法的数字。即回溯的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*-----------------------------用深度优先搜索算法(回溯)，生成数独初始状态---------------------------------------*/</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] generateValidMatrix_DFS() &#123;</span><br><span class="line">		<span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[WIDTH][WIDTH];</span><br><span class="line">		<span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> generateSearch(matrix, x, y);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isFound = <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] generateSearch(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> x, <span class="keyword">int</span> y) &#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(x == WIDTH)&#123;</span><br><span class="line">				printMatrix(matrix);</span><br><span class="line">				isFound = <span class="keyword">true</span>;</span><br><span class="line">				<span class="keyword">return</span> matrix;</span><br><span class="line">			&#125;</span><br><span class="line">			ArrayList&lt;Integer&gt; arr = getAvailableNums(matrix, x, y);</span><br><span class="line">			<span class="comment">//依次将arr中的数字填入matrix[x][y]，填完这一个再搜索下一个位置，直到找到matrix全满的第一个合法的状态（count==1）。</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++)&#123;		</span><br><span class="line">				<span class="keyword">int</span> index = <span class="keyword">new</span> Random().nextInt(arr.size());</span><br><span class="line">				<span class="keyword">int</span> num = arr.remove(index); <span class="comment">//此num即为填在xy处的数字</span></span><br><span class="line">				matrix[x][y] = num;</span><br><span class="line">				<span class="keyword">int</span> nextX = <span class="number">0</span>, nextY = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span>(y == WIDTH - <span class="number">1</span>)&#123;<span class="comment">//最后一行，换行</span></span><br><span class="line">					nextX = x + <span class="number">1</span>;</span><br><span class="line">					nextY = <span class="number">0</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					nextX = x;</span><br><span class="line">					nextY = y + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				generateSearch(matrix, nextX, nextY);</span><br><span class="line">				<span class="keyword">if</span>(isFound == <span class="keyword">true</span>) <span class="keyword">return</span> matrix; <span class="comment">//如果找到一个解就行了，不往下搜索了</span></span><br><span class="line">				matrix[x][y] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>####2，数独的解<br>用深度优先搜索的方法，搜索数独的所有解。和上面的生成初始状态的思路一样。首先把所有的空的格子的坐标都找到。然后一个空格一个空格地用回溯找。</p>
+<p>下面为用深度优先搜索生成以及搜索解的算法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BOP_1_15_Sudoku</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> WIDTH = <span class="number">9</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String...args)</span></span>&#123;</span><br><span class="line">		CopyOfBOP_1_15_Sudoku sudoku = <span class="keyword">new</span> CopyOfBOP_1_15_Sudoku();</span><br><span class="line">		<span class="keyword">int</span>[][] matrix = sudoku.generateValidMatrix_DFS();<span class="comment">//深度优先法，生成数独的初始状态	</span></span><br><span class="line">		sudoku.dropSomeNum(matrix);<span class="comment">//挖去几个数</span></span><br><span class="line">		sudoku.solveSudoku(matrix);<span class="comment">//深度优先搜索解答数独问题</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//挖去几个数，将其赋值为0</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dropSomeNum</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">53</span>,x,y;</span><br><span class="line">		Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count ; i++)&#123;</span><br><span class="line">			x = rand.nextInt(<span class="number">9</span>);</span><br><span class="line">			y = rand.nextInt(<span class="number">9</span>);</span><br><span class="line">			matrix[x][y] = <span class="number">0</span>;<span class="comment">//空格在数组matrix里面用0表示</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"\n去掉一些数之后："</span>);</span><br><span class="line">		printMatrix(matrix);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*-----------------------------用深度优先搜索算法(回溯)，生成数独初始状态---------------------------------------*/</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] generateValidMatrix_DFS() &#123;</span><br><span class="line">		<span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[WIDTH][WIDTH];</span><br><span class="line">		<span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> generateSearch(matrix, x, y);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isFound = <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] generateSearch(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> x, <span class="keyword">int</span> y) &#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(x == WIDTH)&#123;</span><br><span class="line">				printMatrix(matrix);</span><br><span class="line">				isFound = <span class="keyword">true</span>;</span><br><span class="line">				<span class="keyword">return</span> matrix;</span><br><span class="line">			&#125;</span><br><span class="line">			ArrayList&lt;Integer&gt; arr = getAvailableNums(matrix, x, y);</span><br><span class="line">			<span class="comment">//依次将arr中的数字填入matrix[x][y]，填完这一个再搜索下一个位置，直到找到matrix全满的第一个合法的状态（count==1）。</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++)&#123;		</span><br><span class="line">				<span class="keyword">int</span> index = <span class="keyword">new</span> Random().nextInt(arr.size());</span><br><span class="line">				<span class="keyword">int</span> num = arr.remove(index); <span class="comment">//此num即为填在xy处的数字</span></span><br><span class="line">				matrix[x][y] = num;</span><br><span class="line">				<span class="keyword">int</span> nextX = <span class="number">0</span>, nextY = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span>(y == WIDTH - <span class="number">1</span>)&#123;<span class="comment">//最后一行，换行</span></span><br><span class="line">					nextX = x + <span class="number">1</span>;</span><br><span class="line">					nextY = <span class="number">0</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					nextX = x;</span><br><span class="line">					nextY = y + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				generateSearch(matrix, nextX, nextY);</span><br><span class="line">				<span class="keyword">if</span>(isFound == <span class="keyword">true</span>) <span class="keyword">return</span> matrix; <span class="comment">//如果找到一个解就行了，不往下搜索了</span></span><br><span class="line">				matrix[x][y] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> ArrayList&lt;Integer&gt; <span class="title">getAvailableNums</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">		ArrayList&lt;Integer&gt; arr = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= WIDTH; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(isAvailable(matrix, x, y, i))&#123;</span><br><span class="line">				arr.add(i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> arr;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//给matrix[x][y]赋值number是否合法</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isAvailable</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(matrix[x][i] == number || matrix[i][y] == number)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> kx = x - x%<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">int</span> ky = y - y%<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = kx; i &lt; kx + <span class="number">3</span>; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = ky; j &lt; ky + <span class="number">3</span>; j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(matrix[i][j] == number)&#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//打印数独</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span></span>&#123;</span><br><span class="line">		System.out.println();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(matrix[i][j] == <span class="number">0</span>) </span><br><span class="line">					System.out.print(<span class="string">"* "</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					System.out.print(matrix[i][j] + <span class="string">" "</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*---------------------------用深度优先算法得到数独问题的所有的解--------------------------------------------*/</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">space</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="keyword">int</span> y;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">space</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.x = x;</span><br><span class="line">			<span class="keyword">this</span>.y = y;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;space&gt; spaceArr = <span class="keyword">new</span> ArrayList&lt;space&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; WIDTH; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; WIDTH; j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(matrix[i][j] == <span class="number">0</span>) spaceArr.add(<span class="keyword">new</span> space(i, j)); <span class="comment">//因为空格在数组matrix里面用0表示</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"\n需要填补的空格数为："</span>+spaceArr.size());</span><br><span class="line">		search(<span class="number">0</span>, matrix, spaceArr);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> next, <span class="keyword">int</span>[][] matrix, ArrayList&lt;space&gt; spaceArr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(next == spaceArr.size())&#123;</span><br><span class="line">			System.out.println(<span class="string">"\n深度优先搜索后的第"</span> + ++count + <span class="string">"个解:"</span>);</span><br><span class="line">			printMatrix(matrix);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> x = spaceArr.get(next).x;</span><br><span class="line">		<span class="keyword">int</span> y = spaceArr.get(next).y;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++)&#123;			</span><br><span class="line">			<span class="keyword">if</span>(isAvailable(matrix ,x ,y ,i))&#123;</span><br><span class="line">				matrix[x][y] = i;</span><br><span class="line">				search(next + <span class="number">1</span>, matrix, spaceArr);</span><br><span class="line">				matrix[x][y] = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码的一个样例解为：</p>
+<pre><code>6 2 8 5 4 7 1 9 3 
+9 3 5 8 1 6 7 2 4 
+1 7 4 2 3 9 6 5 8 
+5 1 9 7 2 8 3 4 6 
+3 8 2 6 9 4 5 1 7 
+4 6 7 1 5 3 9 8 2 
+2 4 1 3 6 5 8 7 9 
+8 9 3 4 7 1 2 6 5 
+7 5 6 9 8 2 4 3 1 
+
+去掉一些数之后：
+
+6 * * 5 4 7 1 * * 
+* 3 * 8 1 6 7 * * 
+* * 4 * 3 * 6 5 * 
+5 1 9 * 2 8 3 * * 
+3 8 2 6 9 4 5 1 * 
+4 * * * 5 * 9 8 2 
+2 4 1 * 6 5 * 7 * 
+* 9 3 * 7 * * * * 
+* 5 * * * 2 * * 1 
+
+需要填补的空格数为：36
+
+深度优先搜索后的第1个解:
+
+6 2 8 5 4 7 1 3 9 
+9 3 5 8 1 6 7 2 4 
+1 7 4 2 3 9 6 5 8 
+5 1 9 7 2 8 3 4 6 
+3 8 2 6 9 4 5 1 7 
+4 6 7 1 5 3 9 8 2 
+2 4 1 9 6 5 8 7 3 
+8 9 3 4 7 1 2 6 5 
+7 5 6 3 8 2 4 9 1 
+
+深度优先搜索后的第2个解:
+
+6 2 8 5 4 7 1 9 3 
+9 3 5 8 1 6 7 2 4 
+1 7 4 2 3 9 6 5 8 
+5 1 9 7 2 8 3 4 6 
+3 8 2 6 9 4 5 1 7 
+4 6 7 1 5 3 9 8 2 
+2 4 1 3 6 5 8 7 9 
+8 9 3 4 7 1 2 6 5 
+7 5 6 9 8 2 4 3 1 
+</code></pre>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015-10-16-er-cha-shu-bian-li-he-shen-du-wen-ti.html" rel="next" title="二叉树遍历和深度问题">
+                <i class="fa fa-chevron-left"></i> 二叉树遍历和深度问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015-10-29-du-yao-lao-shu-wen-ti.html" rel="prev" title="毒药老鼠问题">
+                毒药老鼠问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2015-10-28-shu-du-wen-ti.html"
+     data-title="BOP1.15 数独问题"
+     data-content=""
+     data-url="http://ginsmile.github.io//blog/2015-10-28-shu-du-wen-ti.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2015-10-28-shu-du-wen-ti.html"
+           data-title="BOP1.15 数独问题" data-url="http://ginsmile.github.io//blog/2015-10-28-shu-du-wen-ti.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpeg"
+               alt="Jyo Shinn" />
+          <p class="site-author-name" itemprop="name">Jyo Shinn</p>
+          <p class="site-description motion-element" itemprop="description">風立ちぬ、いざ生きめやも</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ginsmile" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/JyoShinn" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-cloud"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jyo Shinn</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ginsmile"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>

@@ -1,0 +1,903 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, This is keywords~~" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="最近学习python，遇到了不少和字符编码有关的问题，所以特地查了不少资料，学习了不少知识，所以就借此机会整理了一下。    
+
+
+字符(Character)：是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。    
+字符集(Character set)：是多个字符的集合，字符集种类较多，每个字符集包含的字符个数不同，常见字符集名称：ASCII字符集、GB2312字符集、BIG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件编码">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2013-09-25-file-encoding.html">
+<meta property="og:site_name" content="Jyo's Blog">
+<meta property="og:description" content="最近学习python，遇到了不少和字符编码有关的问题，所以特地查了不少资料，学习了不少知识，所以就借此机会整理了一下。    
+
+
+字符(Character)：是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。    
+字符集(Character set)：是多个字符的集合，字符集种类较多，每个字符集包含的字符个数不同，常见字符集名称：ASCII字符集、GB2312字符集、BIG">
+<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件编码">
+<meta name="twitter:description" content="最近学习python，遇到了不少和字符编码有关的问题，所以特地查了不少资料，学习了不少知识，所以就借此机会整理了一下。    
+
+
+字符(Character)：是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。    
+字符集(Character set)：是多个字符的集合，字符集种类较多，每个字符集包含的字符个数不同，常见字符集名称：ASCII字符集、GB2312字符集、BIG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 文件编码 | Jyo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a007a8efad716708ac296c721099b0e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jyo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">風になる</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                文件编码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-09-25T18:36:00+08:00" content="2013-09-25">
+              2013-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/encoding/" itemprop="url" rel="index">
+                    <span itemprop="name">encoding</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013-09-25-file-encoding.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-25-file-encoding.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近学习python，遇到了不少和字符编码有关的问题，所以特地查了不少资料，学习了不少知识，所以就借此机会整理了一下。    </p>
+<blockquote>
+<ul>
+<li>字符(Character)：是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。    </li>
+<li>字符集(Character set)：是多个字符的集合，字符集种类较多，每个字符集包含的字符个数不同，常见字符集名称：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集等。    </li>
+<li>字符编码（Character Encoding）：是一套法则，使用该法则能够对自然语言的字符的一个集合（如字母表或音节表），与其他东西的一个集合（如号码或电脉冲）进行配对。即在符号集合与数字系统之间建立对应关系。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p><strong>ASCII字符集</strong>，共表示了128个字符，包括32个不能打印的字符。<br><strong>ASCII编码</strong>，将ASCII字符集转换成计算机能够接受的数字系统的数的规则。采用八位二进制编码，最高位统一为0，剩余7位共表示了128个字符，包括32个不能打印的字符，如：<code>5</code>用<code>00110101</code>来表示，如果文件是ASCII编码，可以在DOS中通过type命令查看。<br>另：ASCII的扩展版本EASCII可以显示西欧语言，是现今最通用的<strong>单字节</strong>编码系统。</p>
+<h2 id="GB_u7C7B"><a href="#GB_u7C7B" class="headerlink" title="GB类"></a>GB类</h2><p>由于ASCII编码不支持中文，所以中国单独制定了一套编码。</p>
+<ul>
+<li>GB2312编码，使用两个字节，一共收录了7445个字符，包括6763个汉字和682个其他字符。这682个其他字符包括：罗马希腊字母，数学符号，日文假名，数字（全角），标点（全角），字母（全角）。汉字区的内码范围高字节从B0-F7，低字节从A1-FE。<strong>ASCII里面本来就有的叫做半角</strong>。</li>
+<li>GBK编码（1.0），微软编制，是对GB2312的扩展，收录了21886个符号。</li>
+<li>GB18030编码，基本兼容GBK，完全兼容GB2312，，支持Unicode的全部统一汉字，收录了70244个汉字，同时还收录了藏文、蒙文、维吾尔文等主要的少数民族文字。</li>
+</ul>
+<p>以上三种（GB2312，GBK，GB18030）被称为双字节字符集（DBCS）    </p>
+<p>兼容性：</p>
+<blockquote>
+<p>ASCII &lt; GB2312 &lt; GBK &lt; GB18030   如：<code>汉</code>字均用<code>6C49</code>来表示。<br>ASCII &lt; Unicode 如：<code>汉</code>字用<code>BABA</code>来表示</p>
+</blockquote>
+<h2 id="Big5"><a href="#Big5" class="headerlink" title="Big5"></a>Big5</h2><p>大五码，是使用繁体中文最常用的电脑汉字字符集标准。</p>
+<hr>
+<p><strong>像中国一样，各个国家都有类似GB2312编码的编码体系，这样非常不适合交流。于是就出现了大一统。历史上有两个组织开发出了统一的编码系统，分别是国际标准化组织（ISO）和统一码联盟（The Unicode Consortium），分别研制出了UCS（ISO 10646）和Unicode。目前两个项目保持兼容。</strong></p>
+<hr>
+<h2 id="Unicode_u5B57_u7B26_u96C6"><a href="#Unicode_u5B57_u7B26_u96C6" class="headerlink" title="Unicode字符集"></a>Unicode字符集</h2><p>Unicode字符集，两字节二进制编码，如：<code>汉</code>用<code>U+6C49</code>来表示。</p>
+<blockquote>
+<p>big endian <code>汉</code>用<code>U+6C49</code>来表示，文件最前面有一个FEFF<br>little endian <code>汉</code>用<code>U+496C</code>来表示，文件最前面有一个FFFE<br>Unicode字符集有很多种编码方案，比如：UTF-8，UTF-16，UTF-32等</p>
+</blockquote>
+<h2 id="UCS_uFF08_u901A_u7528_u5B57_u7B26_u96C6_uFF09"><a href="#UCS_uFF08_u901A_u7528_u5B57_u7B26_u96C6_uFF09" class="headerlink" title="UCS（通用字符集）"></a>UCS（通用字符集）</h2><p>Universal Character Set，通用字符集。是由ISO 10646标准所定义的标准字符集，包含已知语言的所有字符。</p>
+<blockquote>
+<p>UCS-2，用16位编码。<br>UCS-4，用31位编码，第32位为0。</p>
+</blockquote>
+<p>下面介绍下UCS-4<br>0xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx 共有 2^31 = 2147483648 个码位。</p>
+<blockquote>
+<ul>
+<li>UCS-4编码分为2^7 = 128 个group，每个group形如 01234567 xxxxxxxx xxxxxxxx xxxxxxxx</li>
+<li>每个group分为2^8 = 256 个plane，每个plane形如 01234567 12345678 xxxxxxxx xxxxxxxx</li>
+<li>每个plane分为2^8 = 256 个rows，每个rows形如 01234567 12345678 12345678 xxxxxxx</li>
+<li>每个rows分为2^8 = 256 个cells，每个cells形如 01234567 12345678 12345678 12345678</li>
+</ul>
+</blockquote>
+<p>00000000 00000000 xxxxxxxx xxxxxxxx ，即高两个字节均为0的UCS-4被称为BMP </p>
+<h2 id="UTF-8_u7F16_u7801_u65B9_u5F0F"><a href="#UTF-8_u7F16_u7801_u65B9_u5F0F" class="headerlink" title="UTF-8编码方式"></a>UTF-8编码方式</h2><p>UTF-8（8-bit Unicode Transformation Format），可变长度字符编码，是unicode的一种实现方式。与ASCII编码兼容。<br><strong>占用1~4个字节</strong><br>编码规则：</p>
+<blockquote>
+<ul>
+<li>对于单字节的符号，字节的第一位设为0，后面7位为这个符号的unicode码。因此对于英语字母，UTF-8编码和ASCII码是相同的。</li>
+<li>对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">UCS-2编码(16进制)/Unicode符号范围</th>
+<th style="text-align:center">UTF-8 字节流(二进制)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0000 0000 - 0000 007F</td>
+<td style="text-align:center">0xxxxxxx</td>
+</tr>
+<tr>
+<td style="text-align:center">0000 0080 - 0000 07FF</td>
+<td style="text-align:center">110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td style="text-align:center">0000 0800 - 0000 FFFF</td>
+<td style="text-align:center">1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td style="text-align:center">0001 0000 - 0010 FFFF</td>
+<td style="text-align:center">1110xxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>例如“汉”字的Unicode编码是<code>6C49</code>，故转化成UTF-8采用第三种三字节编码方式，<code>6C49</code>的二进制带入三字节模版，就得到了其UTF-8编码：<code>11100110 10110001 10001001</code>，即<code>E6 B1 89</code>。<br>UTF编码中有一个名为BOM的编码方式，用来区分UTF-16是Big-Endian还是Little-Endian。</p>
+<h2 id="UTF-16_u7F16_u7801_u65B9_u5F0F"><a href="#UTF-16_u7F16_u7801_u65B9_u5F0F" class="headerlink" title="UTF-16编码方式"></a>UTF-16编码方式</h2><p>UTF-16编码方式用16位，即两个字节来编码字符，所以他只能编码Unicode的前65535个字符。    </p>
+<ul>
+<li>如果字符编码小于0x10000，直接用两字节表示，如<code>U+6C49</code>    </li>
+<li>如果字符编码大于0x10000</li>
+</ul>
+<h2 id="UTF-32_u7F16_u7801_u65B9_u5F0F"><a href="#UTF-32_u7F16_u7801_u65B9_u5F0F" class="headerlink" title="UTF-32编码方式"></a>UTF-32编码方式</h2><p>UTF-32又称UCS-4，是一种将Unicode字符编码的协定，对每个字符使用4个字节。这种编码方式非常浪费空间。</p>
+<h2 id="CJK"><a href="#CJK" class="headerlink" title="CJK"></a>CJK</h2><p>Chinese Japanese Korean，中日韩统一表意文字。把分别来自中文、日文、韩文、越文中，本质、意义相同、形状一样或稍异的表意文字（主要为汉字，但也有仿汉字如日本国字、韩国独有汉字、越南的喃字）于ISO 10646及Unicode标准内赋予相同编码。</p>
+<h2 id="windows_u548Clinux_u79CD_u7684_u6587_u4EF6_u7F16_u7801"><a href="#windows_u548Clinux_u79CD_u7684_u6587_u4EF6_u7F16_u7801" class="headerlink" title="windows和linux种的文件编码"></a>windows和linux种的文件编码</h2><p>windows中新建一个记事本文档，默认是ASCII编码，如果出现中文就会使用gb2312编码。<br>linux编码使用utf-8编码。</p>
+<h2 id="mySQL_u7684_u7F16_u7801"><a href="#mySQL_u7684_u7F16_u7801" class="headerlink" title="mySQL的编码"></a>mySQL的编码</h2><p>mySQL默认采用ISO 8859-1编码方式，即单字节的EASCII编码。<br>更改mySQL编码方式：<code>mysql_query(&#39;set names gbk&#39;);</code></p>
+<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/imissherso/articles/640727.html" target="_blank" rel="external">文件编码格式</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="external">阮一峰：字符编码笔记</a></li>
+<li><a href="http://zh.wikipedia.org/zh-cn/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" target="_blank" rel="external">字符编码-wiki百科</a></li>
+<li><a href="http://zh.wikipedia.org/zh-cn/%E4%B8%AD%E6%97%A5%E9%9F%93%E8%B6%8A%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97" target="_blank" rel="external">CJK-wiki百科</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013-09-23-tools.html" rel="next" title="我的利器">
+                <i class="fa fa-chevron-left"></i> 我的利器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013-09-25-python-encoding.html" rel="prev" title="Python编码转换">
+                Python编码转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2013-09-25-file-encoding.html"
+     data-title="文件编码"
+     data-content=""
+     data-url="http://ginsmile.github.io//blog/2013-09-25-file-encoding.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2013-09-25-file-encoding.html"
+           data-title="文件编码" data-url="http://ginsmile.github.io//blog/2013-09-25-file-encoding.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpeg"
+               alt="Jyo Shinn" />
+          <p class="site-author-name" itemprop="name">Jyo Shinn</p>
+          <p class="site-description motion-element" itemprop="description">風立ちぬ、いざ生きめやも</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ginsmile" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/JyoShinn" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/smilexujin" target="_blank">
+                  
+                    <i class="fa fa-cloud"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII"><span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GB_u7C7B"><span class="nav-text">GB类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Big5"><span class="nav-text">Big5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unicode_u5B57_u7B26_u96C6"><span class="nav-text">Unicode字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UCS_uFF08_u901A_u7528_u5B57_u7B26_u96C6_uFF09"><span class="nav-text">UCS（通用字符集）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8_u7F16_u7801_u65B9_u5F0F"><span class="nav-text">UTF-8编码方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-16_u7F16_u7801_u65B9_u5F0F"><span class="nav-text">UTF-16编码方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-32_u7F16_u7801_u65B9_u5F0F"><span class="nav-text">UTF-32编码方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CJK"><span class="nav-text">CJK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows_u548Clinux_u79CD_u7684_u6587_u4EF6_u7F16_u7801"><span class="nav-text">windows和linux种的文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mySQL_u7684_u7F16_u7801"><span class="nav-text">mySQL的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599"><span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jyo Shinn</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ginsmile"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
