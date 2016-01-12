@@ -42,6 +42,15 @@
 * git push origin hexo
 
 
+以后，每次丢失资料后，都需要进行以下步骤
+
+1. git clone git@github.com:GinSmile/ginsmile.github.io.git Blog
+2. cd Blog
+3. npm install hexo
+4. npm install
+5. npm install hexo-deployer-git
+
+
 <hr>
 其中，为了更新第三方主题[next](https://github.com/iissnan/hexo-theme-next)方便，让第三方的next主题作为一个git子项目添加到本项目中。		
 新增next主题的时候使用的命令如下：
