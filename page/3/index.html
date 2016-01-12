@@ -218,11 +218,367 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015-03-09-jia-su-octopress-fang-wen.html" itemprop="url">
+                  加速octpress访问
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-09T14:30:00+00:00" content="2015-03-09">
+              2015-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Octopress/" itemprop="url" rel="index">
+                    <span itemprop="name">Octopress</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-03-09-jia-su-octopress-fang-wen.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-03-09-jia-su-octopress-fang-wen.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        
+          
+            <p>因为GFW的关系，我的博客访问速度超级慢。经常卡在<code>正在连接ajax.googleapis.com</code>或者<code>正在连接www.gravter.com</code>上，所以要在源码中删除这些代码。<br>以下为踢出某些访问不了的网站的方法：</p>
+<ul>
+<li>在/source/_includes/head.html中找到所有带<code>googleapis</code>的代码注释掉</li>
+<li>在/source/_includes/custom/head.html中找到所有带<code>googleapis</code>的代码注释掉</li>
+<li>在/source/_includes/header.html中把class为profilepic的div删除掉。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-31-terminal-lines.html" itemprop="url">
+                  terminal lines
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-31T10:26:00+00:00" content="2014-08-31">
+              2014-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014-08-31-terminal-lines.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-31-terminal-lines.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>非常有用的Bash命令！</p>
+<ul>
+<li>alias 别名。<ul>
+<li>解决rake命令alias irake=”bundle exec rake”</li>
+</ul>
+</li>
+<li>iconv，编码转换。<ul>
+<li>解决pc拷贝到mac的中文乱码问题：iconv -f GBK -t UTF-8 old.txt &gt; new.txt</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-30-android-sdk.html" itemprop="url">
+                  android-sdk
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-29T23:25:00+00:00" content="2014-08-29">
+              2014-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014-08-30-android-sdk.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-30-android-sdk.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>记下我重新安装android开发环境的过程，一句话，万恶的长城啊！</p>
+<p>这次是第二次还是第三次装这个开发环境啊，我不太记得了，不过每次遇到的问题都差不多，故记录下来，以备下次用到。这次和前几次稍微不一样，使用了Intellij IDEA，看网上说这玩意比Eclipse好很多，就试了试，目前还不是很习惯的说。</p>
+<p>下面是安装过程： </p>
+<ul>
+<li>首先要安装Intellij IDEA</li>
+<li>然后确保本机安装有JDK</li>
+<li>去官网安装android sdk（那个alone的版本就好）</li>
+<li>打开sdk的<code>sdk/tools/android</code>命令，出现Android SDK Manager</li>
+<li>用此SDK Manager下载各个版本的API</li>
+</ul>
+<p>这次问题主要出现在最后一步，总是出现fetch不上的错误。原因就是dl-ssl.google.com 被干掉了。我们可以用<a href="http://ping.chinaz.com">站长工具</a>的超级ping工具来查找可用的IP。找到之后，修改<code>etc/hosts</code>文件的内容即可。即在此文件的文件尾加上：</p>
+<pre><code>203.208.46.146 dl.google.com
+203.208.46.146 dl-ssl.google.com
+127.0.0.1 servserv.generals.ea.com
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2014-08-30-android-sdk.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1023,367 +1379,6 @@ git config --global user.name &quot;GinSmile&quot;
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013-09-21-my-git-command.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013-09-19-weibo-robot.html" itemprop="url">
-                  Weibo Robot
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-09-19T12:01:00+00:00" content="2013-09-19">
-              2013-09-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/RaspberryPi/" itemprop="url" rel="index">
-                    <span itemprop="name">RaspberryPi</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013-09-19-weibo-robot.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-19-weibo-robot.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近偷偷搞了一个微博机器人，第一版算是完成了吧，虽然还有bug，但不影响使用。<br>这个机器人是基于新浪微博的python api，搭建在我的Raspberry Pi上的，因为我想让她更像一个人，所以加了很多图片和语录，导致程序有点大，仅仅图片就20M….OMG~~<br>以下是她的功能：<br><img src="/images/pic/sina_logo.png" class="right" width="224" height="71" title="sina sina"></p>
-<blockquote>
-<ol>
-<li>每小时发布一条密友微博，以监控树莓派的状态</li>
-<li>每天发布7条普通微博，[图片 or 问候语 or 监控信息] 随机搭配</li>
-<li>回复提到我的原创微博，随机回复其[天气预报 or 问候语]</li>
-<li>回复提到我的评论（不包括点击回复按钮那种评论），随机回复其一些评论
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013-09-19-weibo-robot.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013-09-17-liebiao.html" itemprop="url">
-                  python列表推导式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-09-16T21:05:00+00:00" content="2013-09-16">
-              2013-09-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013-09-17-liebiao.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-17-liebiao.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>真是超级喜欢这个语法，大赞!<br>最近在看《某科学的超电磁炮》，感觉婚后光子玩python玩的不错～～哈哈<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013-09-17-liebiao.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013-09-17-raspberry-pi.html" itemprop="url">
-                  Raspberry Pi 把玩记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-09-16T20:16:00+00:00" content="2013-09-16">
-              2013-09-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/RaspberryPi/" itemprop="url" rel="index">
-                    <span itemprop="name">RaspberryPi</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013-09-17-raspberry-pi.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-17-raspberry-pi.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="u6811_u8393_u6D3E"><a href="#u6811_u8393_u6D3E" class="headerlink" title="树莓派"></a>树莓派</h1><p>树莓派是个好东西！</p>
-<p>###1. 配置<br>它是一款基于Linux的卡片大小的微型电脑，我买的是红板（国产B版）： </p>
-<pre><code>树莓派主板
-散热片
-开关电源线
-网线 
-class10 8G SD卡
-</code></pre><p>由于我是在笔记本上利用远程登陆控制树莓派，所以以下配件不需要，等回家有电视了之后再鼓捣：<br>    无线网卡<br>    HDMI线 </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013-09-17-raspberry-pi.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

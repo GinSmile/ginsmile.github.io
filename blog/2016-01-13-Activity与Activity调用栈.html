@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="music," />
+  <meta name="keywords" content="Hexo, This is keywords~~" />
 
 
 
@@ -57,16 +57,28 @@
 
 
 
-<meta name="description" content="青い空 白い雲 丸い帽子飛んでゆく 飛んでゆく 追いかけても黒い髪 赤い服 小さな靴駆けてゆく 駆けてゆく 息をきらしさよなら さよなら 言わないで遠い鐘 長い影 やさしい声あと少し もう少し ここにいたい金の星 銀の月 静かな風ゆびきりは これきりで 我慢しようさよなら さよなら また逢えるさよなら さよなら また逢えるさよなら さよなら また逢える">
+<meta name="description" content="本文为Android的Activity相关知识整理，具体参考了
+
+《Android开发艺术探索》第一章
+《Android群英传》第八章
+《第一行代码》第二章">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ゆびきり">
-<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-12-ゆびきり.html">
+<meta property="og:title" content="Activity与Activity调用栈">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-13-Activity与Activity调用栈.html">
 <meta property="og:site_name" content="Jyo's Blog">
-<meta property="og:description" content="青い空 白い雲 丸い帽子飛んでゆく 飛んでゆく 追いかけても黒い髪 赤い服 小さな靴駆けてゆく 駆けてゆく 息をきらしさよなら さよなら 言わないで遠い鐘 長い影 やさしい声あと少し もう少し ここにいたい金の星 銀の月 静かな風ゆびきりは これきりで 我慢しようさよなら さよなら また逢えるさよなら さよなら また逢えるさよなら さよなら また逢える">
-<meta property="og:updated_time" content="2016-01-12T02:41:23.000Z">
+<meta property="og:description" content="本文为Android的Activity相关知识整理，具体参考了
+
+《Android开发艺术探索》第一章
+《Android群英传》第八章
+《第一行代码》第二章">
+<meta property="og:updated_time" content="2016-01-12T12:01:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ゆびきり">
-<meta name="twitter:description" content="青い空 白い雲 丸い帽子飛んでゆく 飛んでゆく 追いかけても黒い髪 赤い服 小さな靴駆けてゆく 駆けてゆく 息をきらしさよなら さよなら 言わないで遠い鐘 長い影 やさしい声あと少し もう少し ここにいたい金の星 銀の月 静かな風ゆびきりは これきりで 我慢しようさよなら さよなら また逢えるさよなら さよなら また逢えるさよなら さよなら また逢える">
+<meta name="twitter:title" content="Activity与Activity调用栈">
+<meta name="twitter:description" content="本文为Android的Activity相关知识整理，具体参考了
+
+《Android开发艺术探索》第一章
+《Android群英传》第八章
+《第一行代码》第二章">
 
 
 
@@ -84,7 +96,7 @@
   };
 </script>
 
-  <title> ゆびきり | Jyo's Blog </title>
+  <title> Activity与Activity调用栈 | Jyo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +245,7 @@
             
             
               
-                ゆびきり
+                Activity与Activity调用栈
               
             
           </h1>
@@ -245,19 +257,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-12T09:17:32+08:00" content="2016-01-12">
+            <time itemprop="dateCreated" datetime="2016-01-13T03:21:42+08:00" content="2016-01-12">
               2016-01-12
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016-01-12-ゆびきり.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-12-ゆびきり.html" itemprop="commentsCount"></span>
+                <a href="/blog/2016-01-13-Activity与Activity调用栈.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-13-Activity与Activity调用栈.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -278,43 +309,31 @@
       
 
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=523591&auto=0&height=66"></iframe>
-
-<blockquote class="blockquote-center"><br>青い空 白い雲 丸い帽子<br>飛んでゆく 飛んでゆく 追いかけても<br>黒い髪 赤い服 小さな靴<br>駆けてゆく 駆けてゆく 息をきらし<br>さよなら さよなら 言わないで<br>遠い鐘 長い影 やさしい声<br>あと少し もう少し ここにいたい<br>金の星 銀の月 静かな風<br>ゆびきりは これきりで 我慢しよう<br>さよなら さよなら また逢える<br>さよなら さよなら また逢える<br>さよなら さよなら また逢える<br></blockquote>
-
+        <p>本文为Android的Activity相关知识整理，具体参考了</p>
+<ul>
+<li>《Android开发艺术探索》第一章</li>
+<li>《Android群英传》第八章</li>
+<li>《第一行代码》第二章</li>
+</ul>
 <a id="more"></a>
-<p>歌词大意：</p>
-<blockquote>
-<p>   蓝天,白云,圆帽子<br>   飞啊飞，追也追不上<br>   黑发,红衣,小靴子<br>   跑啊跑，上气不接下气<br>   再见,再见,不要这样说<br>   远处的钟声,修长的倒影，柔和的声音<br>   就一会儿，只一会儿，停留在此<br>   金色的星星、银色的月亮，静谧的清风<br>   这是最后一次拉钩，让我们耐心等待<br>   再见、再见，还会再见<br>   再见、再见，还会再见<br>   再见、再见，还会再见          </p>
-</blockquote>
 
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/music/" rel="tag">#music</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2015-10-29-du-yao-lao-shu-wen-ti.html" rel="next" title="毒药老鼠问题">
-                <i class="fa fa-chevron-left"></i> 毒药老鼠问题
+              <a href="/blog/2016-01-13-Android系统信息.html" rel="next" title="Android系统信息">
+                <i class="fa fa-chevron-left"></i> Android系统信息
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016-01-13-从Octopress迁移到Hexo.html" rel="prev" title="从Octopress迁移到Hexo">
-                从Octopress迁移到Hexo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -329,10 +348,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2016-01-12-ゆびきり.html"
-     data-title="ゆびきり"
+        <div class="ds-share flat" data-thread-key="/blog/2016-01-13-Activity与Activity调用栈.html"
+     data-title="Activity与Activity调用栈"
      data-content=""
-     data-url="http://ginsmile.github.io//blog/2016-01-12-ゆびきり.html">
+     data-url="http://ginsmile.github.io//blog/2016-01-13-Activity与Activity调用栈.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -359,8 +378,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2016-01-12-ゆびきり.html"
-           data-title="ゆびきり" data-url="http://ginsmile.github.io//blog/2016-01-12-ゆびきり.html">
+      <div class="ds-thread" data-thread-key="/blog/2016-01-13-Activity与Activity调用栈.html"
+           data-title="Activity与Activity调用栈" data-url="http://ginsmile.github.io//blog/2016-01-13-Activity与Activity调用栈.html">
       </div>
     
   </div>
