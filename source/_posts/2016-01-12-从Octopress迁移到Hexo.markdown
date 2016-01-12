@@ -17,7 +17,7 @@ categories: Hexo
 	$ hexo init <folder>
 	$ cd <folder>
 	$ npm install
-
+<!--more-->
 3.修改设置以适应Octopress文件名
 ---
 修改 _config.yml：
