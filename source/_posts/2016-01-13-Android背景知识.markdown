@@ -1,0 +1,89 @@
+---
+title: Android背景知识
+date: 2016-01-13 18:19:21
+categories: Android
+---
+
+本文为Android的系统信息相关知识整理，具体参考了
+
+* 《Android群英传》第一章 Android体系与系统架构
+
+Android底层采用C语言保证效率，上层使用Java简单，快速进行开发。
+
+
+1.Android系统架构
+-----------------
+* **Linux Kernel**，包括Camera Driver, USB Driver等硬件驱动，进程管理，安全系统，Power Management等
+* **Libraries和Android runtime（ART）**，包括SQLite，WebKit，SSL，Surface Management等。**在Androd5.X，ART已经取代Dalvik，采用安装时编译。**每个APP都会分配一个虚拟机来保证互相之间不受干扰。
+*  **Application framework**，包括Activity Manager，Content Providers，Package Manager等。
+*  **Application**，使用NDK和Java开发的App。
+<!--more-->
+2.Android四大组件
+------------------
+1. **Activity，交互界面**
+2. **Content Provider，应用之间共享数据**
+3. **Service，提供后台服务**
+4. **BroadCast Reciever，广播**
+
+**四大组件如何协同工作？**
+Activity，作为人机交互的第一界面，负责向用户展示信息和处理结果，而这些信息的来源，有以下几种途径：
+
+>1.  通过Content Provider获取其他应用的信息（比如通讯录）。
+>2.  通过Service从后台计算、下载、处理的结果。
+>3. 通过BroadCast Reciever获取到的广播信息。
+>4. 通过资源获取。
+>5. 通过Intent传递。
+
+**应用运行上下文是什么？**
+Context，是当前对象在程序中所处的一个环境，一个与系统交互的过程。
+**系统会在创建Application，Activity，Service的时候创建相应的Context对象。**
+获取Context的方法如下：
+
+>1. 在Activity中直接使用this
+>2. 在匿名内部类中，指定XXXXActivity.this
+>3. 通过getApplicationContext()直接获取整个App的Context
+
+3.Android系统源码，系统目录，App文件目录
+-------------------------------------
+Android系统目录和源码目录并不是一一对应的，而是和打包生成的Image文件的结构相同。
+
+* **Android系统源码**在线查看网站：[androidxref.com](http://androidxref.com)
+* **Android系统目录**中，/system和/data最为重要。其中，data/data/是开发者最常访问的文件夹，里面包含了App的数据信息，文件信息，数据库信息等，以包名的方式来区分各个应用。
+* **Android App文件目录**，应用层上开发应用的时候IDE生成的目录。Android Studio与Eclipse的文件结构稍有不同。
+
+
+4.Android Studio和ADB
+---------------------
+
+* 安装Android Studio必备资料：[AndroidDevTools](http://www.androiddevtools.cn/)
+* ADB，Android Debug Bridge，用来连接手机和电脑。
+
+**ADB基本命令**
+1.查看adb版本，进入shell。
+
+	>adb version
+	Android Debug Bridge version 1.0.32
+	>adb shell
+
+2.安装apk，install为安装，而push为将一个文件写入手机任意目录，下面放入了系统目录/system/app/，Test成为了一个系统应用。
+
+	>adb install -r F:\Test.apk
+	>adb push D:\Test.apk /system/app/
+
+3.向手机写入（push），获取（pull）文件
+
+	>adb push D:\file.txt /system/temp/
+	>adb pull /system/temp/file.txt D:\
+
+4.删除应用
+
+	>adb remount
+	>adb shell
+	>cd system/app
+	>rm *.apk
+5.重启
+
+	>adb reboot
+6.录制屏幕
+
+	>adb shell screenrecord /sdcard/demo.mp4

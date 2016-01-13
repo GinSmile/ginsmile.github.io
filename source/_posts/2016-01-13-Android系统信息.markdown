@@ -1,0 +1,118 @@
+---
+title: Android系统信息
+date: 2016-01-13 18:21:03
+categories: Android
+---
+
+
+本文为Android的系统信息相关知识整理，具体参考了
+
+ * 《Android群英传》第九章 Android系统信息与安全机制
+
+
+1. 系统信息获取
+----
+获取系统信息的两种方式：
+
+* [android.os.Builder](http://developer.android.com/reference/android/os/Build.html)，包含系统编译时的大量设备、配置信息。
+     * Build.BOARD //主板
+     * Build.BRAND //Android系统定制商
+     * Build.PRODUCT //手机产品名
+     * ...
+* [SystemProperty](http://developer.android.com/reference/java/lang/System.html)，包含系统配置属性值和参数。
+    * os.version //OS版本
+    * os.name //OS名称
+    * user.timezone //时区
+    * ...
+
+<!--more-->
+
+
+    String board = Build.BOARD;
+    String brand = Build.BRAND;
+    String os_version = System.getProperty("os.version");
+    String os_name = Ststem.getProperty("os.version");
+
+系统信息来源，其中包含比函数获得的多得多的信息：
+* Android系统目录的`system/build.prop`文件。里面包含android.os.Build所获取的信息。
+* Android系统目录的`proc/`文件夹，里面包含非常多的系统信息。
+
+2. 应用信息获取
+-----------
+2.1 PackageManager
+=====
+[PackageManager](http://developer.android.com/reference/android/content/pm/PackageManager.html)，重点在于**获取应用的包信息。这些信息来自AndroidManifest.xml**
+
+AndroidManifest.xml的文件内容结构：
+
+        <?xml version="1.0" encoding="utf-8"?>
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            package="com.teamir.mendcurse"
+            android:versionCode="1"
+            android:versionName="1.0" >
+            
+            <application
+                android:name=".AppData"
+                android:allowBackup="true"
+                android:icon="@drawable/ic_launcher"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme" >
+             
+                <activity
+                    android:name="com.teamir.mendcurse.welcome.SplashActivity"
+                    android:label="@string/app_name"
+                    android:screenOrientation="landscape"
+                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >  
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>         
+                </activity>
+
+            </application>
+
+        </manifest>
+
+各个标签的封装类：
+
+* mainfest -> PackageInfo
+* application -> ApplicationInfo
+* activity -> ActivityInfo
+* service -> ServiceInfo
+
+简单用法示例，提取所有应用名。当然也可以新建一个类，存到里面。
+
+    //获取PackageManager对象
+    pm = this.getPackageManager(); 
+    //获取所有的应用信息
+    List<ApplicationInfo> listApplications = pm.getInstalledApplications(PackageManger.GET_UNINSTALLED_PACKAGES) 
+    List<String> labelList = new ArrayList<String>();
+    for(ApplicationInfo app:listApplications){
+        labelList.add((String)app.loadLabel(pm));
+    }
+
+2.2 ActivityManager
+===
+[ActivityManager](http://developer.android.com/reference/android/app/ActivityManager.html)，重点在于获得在运行的应用程序信息。
+
+ActivityManager封装的重要的Bean对象：
+
+* ActivityManager.MemoryInfo，全局的内存信息
+    * availMem，系统可用内存
+    * totalMem，总内存
+    * threshold，低内存阈值
+    * lowMemory，是否处于低内存
+* Debug.MemoryInfo，进程下的内存信息
+* RunningAppProcessInfo，运行的进程信息
+* RunningServiceInfo，运行的服务信息
+
+
+示例，获取正在运行过的进程的pid：
+
+    ActivityManager mActivityManager (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+    List<ActivityManager.RunningAppProcessInfo> appProcessList = mActivityManager.getRunningAppProcessInfo();
+    
+    List<Integer> pidList = new ArrayList<Integer>();
+    for(int i = 0; i < appProcessList.size(); i++){
+        pidList.add(info.pid);
+    }

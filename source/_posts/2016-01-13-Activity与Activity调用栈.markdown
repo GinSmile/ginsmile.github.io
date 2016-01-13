@@ -1,7 +1,7 @@
 ---
 title: Activity与Activity调用栈
-date: 2016-01-12 19:21:42
-categories: notes
+date: 2016-01-13 20:21:42
+categories: Android
 ---
 
 本文为Android的Activity相关知识整理，具体参考了
