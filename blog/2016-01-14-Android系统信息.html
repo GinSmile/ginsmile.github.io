@@ -57,16 +57,55 @@
 
 
 
-<meta name="description" content="風立ちぬ、いざ生きめやも">
+<meta name="description" content="本文为Android的系统信息相关知识整理，具体参考了
+
+《Android群英传》第九章 Android系统信息与安全机制
+
+1. 系统信息获取获取系统信息的两种方式：
+
+android.os.Builder，包含系统编译时的大量设备、配置信息。
+Build.BOARD //主板
+Build.BRAND //Android系统定制商
+Build.PRODUCT //手机产品名
+…
+
+
+System">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android系统信息">
-<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-13-Android系统信息.html">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-14-Android系统信息.html">
 <meta property="og:site_name" content="Jyo's Blog">
-<meta property="og:description" content="風立ちぬ、いざ生きめやも">
-<meta property="og:updated_time" content="2016-01-12T11:18:31.000Z">
+<meta property="og:description" content="本文为Android的系统信息相关知识整理，具体参考了
+
+《Android群英传》第九章 Android系统信息与安全机制
+
+1. 系统信息获取获取系统信息的两种方式：
+
+android.os.Builder，包含系统编译时的大量设备、配置信息。
+Build.BOARD //主板
+Build.BRAND //Android系统定制商
+Build.PRODUCT //手机产品名
+…
+
+
+System">
+<meta property="og:updated_time" content="2016-01-13T10:22:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android系统信息">
-<meta name="twitter:description" content="風立ちぬ、いざ生きめやも">
+<meta name="twitter:description" content="本文为Android的系统信息相关知识整理，具体参考了
+
+《Android群英传》第九章 Android系统信息与安全机制
+
+1. 系统信息获取获取系统信息的两种方式：
+
+android.os.Builder，包含系统编译时的大量设备、配置信息。
+Build.BOARD //主板
+Build.BRAND //Android系统定制商
+Build.PRODUCT //手机产品名
+…
+
+
+System">
 
 
 
@@ -245,19 +284,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-13T03:18:31+08:00" content="2016-01-12">
-              2016-01-12
+            <time itemprop="dateCreated" datetime="2016-01-14T02:21:03+08:00" content="2016-01-13">
+              2016-01-13
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016-01-13-Android系统信息.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-13-Android系统信息.html" itemprop="commentsCount"></span>
+                <a href="/blog/2016-01-14-Android系统信息.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-14-Android系统信息.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -278,7 +336,105 @@
       
 
       
-        
+        <p>本文为Android的系统信息相关知识整理，具体参考了</p>
+<ul>
+<li>《Android群英传》第九章 Android系统信息与安全机制</li>
+</ul>
+<h2 id="1-__u7CFB_u7EDF_u4FE1_u606F_u83B7_u53D6"><a href="#1-__u7CFB_u7EDF_u4FE1_u606F_u83B7_u53D6" class="headerlink" title="1. 系统信息获取"></a>1. 系统信息获取</h2><p>获取系统信息的两种方式：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/os/Build.html" target="_blank" rel="external">android.os.Builder</a>，包含系统编译时的大量设备、配置信息。<ul>
+<li>Build.BOARD //主板</li>
+<li>Build.BRAND //Android系统定制商</li>
+<li>Build.PRODUCT //手机产品名</li>
+<li>…</li>
+</ul>
+</li>
+<li><a href="http://developer.android.com/reference/java/lang/System.html" target="_blank" rel="external">SystemProperty</a>，包含系统配置属性值和参数。<ul>
+<li>os.version //OS版本</li>
+<li>os.name //OS名称</li>
+<li>user.timezone //时区</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<pre><code>String board = Build.BOARD;
+String brand = Build.BRAND;
+String os_version = System.getProperty(&quot;os.version&quot;);
+String os_name = Ststem.getProperty(&quot;os.version&quot;);
+</code></pre><p>系统信息来源，其中包含比函数获得的多得多的信息：</p>
+<ul>
+<li>Android系统目录的<code>system/build.prop</code>文件。里面包含android.os.Build所获取的信息。</li>
+<li>Android系统目录的<code>proc/</code>文件夹，里面包含非常多的系统信息。</li>
+</ul>
+<h2 id="2-__u5E94_u7528_u4FE1_u606F_u83B7_u53D6"><a href="#2-__u5E94_u7528_u4FE1_u606F_u83B7_u53D6" class="headerlink" title="2. 应用信息获取"></a>2. 应用信息获取</h2><h1 id="2-1_PackageManager"><a href="#2-1_PackageManager" class="headerlink" title="2.1 PackageManager"></a>2.1 PackageManager</h1><p><a href="http://developer.android.com/reference/android/content/pm/PackageManager.html" target="_blank" rel="external">PackageManager</a>，重点在于<strong>获取应用的包信息。这些信息来自AndroidManifest.xml</strong></p>
+<p>AndroidManifest.xml的文件内容结构：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.teamir.mendcurse&quot;
+    android:versionCode=&quot;1&quot;
+    android:versionName=&quot;1.0&quot; &gt;
+
+    &lt;application
+        android:name=&quot;.AppData&quot;
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@drawable/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:theme=&quot;@style/AppTheme&quot; &gt;
+
+        &lt;activity
+            android:name=&quot;com.teamir.mendcurse.welcome.SplashActivity&quot;
+            android:label=&quot;@string/app_name&quot;
+            android:screenOrientation=&quot;landscape&quot;
+            android:theme=&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot; &gt;  
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;         
+        &lt;/activity&gt;
+
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+</code></pre><p>各个标签的封装类：</p>
+<ul>
+<li>mainfest -&gt; PackageInfo</li>
+<li>application -&gt; ApplicationInfo</li>
+<li>activity -&gt; ActivityInfo</li>
+<li>service -&gt; ServiceInfo</li>
+</ul>
+<p>简单用法示例，提取所有应用名。当然也可以新建一个类，存到里面。</p>
+<pre><code>//获取PackageManager对象
+pm = this.getPackageManager(); 
+//获取所有的应用信息
+List&lt;ApplicationInfo&gt; listApplications = pm.getInstalledApplications(PackageManger.GET_UNINSTALLED_PACKAGES) 
+List&lt;String&gt; labelList = new ArrayList&lt;String&gt;();
+for(ApplicationInfo app:listApplications){
+    labelList.add((String)app.loadLabel(pm));
+}
+</code></pre><h1 id="2-2_ActivityManager"><a href="#2-2_ActivityManager" class="headerlink" title="2.2 ActivityManager"></a>2.2 ActivityManager</h1><p><a href="http://developer.android.com/reference/android/app/ActivityManager.html" target="_blank" rel="external">ActivityManager</a>，重点在于获得在运行的应用程序信息。</p>
+<p>ActivityManager封装的重要的Bean对象：</p>
+<ul>
+<li>ActivityManager.MemoryInfo，全局的内存信息<ul>
+<li>availMem，系统可用内存</li>
+<li>totalMem，总内存</li>
+<li>threshold，低内存阈值</li>
+<li>lowMemory，是否处于低内存</li>
+</ul>
+</li>
+<li>Debug.MemoryInfo，进程下的内存信息</li>
+<li>RunningAppProcessInfo，运行的进程信息</li>
+<li>RunningServiceInfo，运行的服务信息</li>
+</ul>
+<p>示例，获取正在运行过的进程的pid：</p>
+<pre><code>ActivityManager mActivityManager (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+List&lt;ActivityManager.RunningAppProcessInfo&gt; appProcessList = mActivityManager.getRunningAppProcessInfo();
+
+List&lt;Integer&gt; pidList = new ArrayList&lt;Integer&gt;();
+for(int i = 0; i &lt; appProcessList.size(); i++){
+    pidList.add(info.pid);
+}
+</code></pre>
       
     </div>
 
@@ -289,16 +445,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016-01-13-从Octopress迁移到Hexo.html" rel="next" title="从Octopress迁移到Hexo">
-                <i class="fa fa-chevron-left"></i> 从Octopress迁移到Hexo
+              <a href="/blog/2016-01-14-Android背景知识.html" rel="next" title="Android背景知识">
+                <i class="fa fa-chevron-left"></i> Android背景知识
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2016-01-14-Android背景知识.html" rel="prev" title="Android背景知识">
-                Android背景知识 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2016-01-14-Activity与Activity调用栈.html" rel="prev" title="Activity与Activity调用栈">
+                Activity与Activity调用栈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -314,10 +470,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2016-01-13-Android系统信息.html"
+        <div class="ds-share flat" data-thread-key="/blog/2016-01-14-Android系统信息.html"
      data-title="Android系统信息"
      data-content=""
-     data-url="http://ginsmile.github.io//blog/2016-01-13-Android系统信息.html">
+     data-url="http://ginsmile.github.io//blog/2016-01-14-Android系统信息.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -344,8 +500,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2016-01-13-Android系统信息.html"
-           data-title="Android系统信息" data-url="http://ginsmile.github.io//blog/2016-01-13-Android系统信息.html">
+      <div class="ds-thread" data-thread-key="/blog/2016-01-14-Android系统信息.html"
+           data-title="Android系统信息" data-url="http://ginsmile.github.io//blog/2016-01-14-Android系统信息.html">
       </div>
     
   </div>
@@ -449,7 +605,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-__u7CFB_u7EDF_u4FE1_u606F_u83B7_u53D6"><span class="nav-text">1. 系统信息获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-__u5E94_u7528_u4FE1_u606F_u83B7_u53D6"><span class="nav-text">2. 应用信息获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1_PackageManager"><span class="nav-text">2.1 PackageManager</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2_ActivityManager"><span class="nav-text">2.2 ActivityManager</span></a></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

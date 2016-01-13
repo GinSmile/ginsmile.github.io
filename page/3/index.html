@@ -218,6 +218,248 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015-03-14-jvm-garbage-collection.html" itemprop="url">
+                  JVM Garbage Collection
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-14T08:40:00+00:00" content="2015-03-14">
+              2015-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-03-14-jvm-garbage-collection.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-03-14-jvm-garbage-collection.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先梳理一下Java中各种对象、变量存储的位置。<em>参见后面程序例子</em></p>
+<ul>
+<li>Register（寄存器，位于处理器内部）：最快的存储区，由编译器根据需求进行分配，不能直接控制。</li>
+<li>Stack（栈，位于RAM区）：存放基本类型的变量数据和对象的引用。对于<strong>小的、简单的变量</strong>，Java创建一个并非是引用的“自动”变量，这个变量直接存储“值”，并置于栈中。例如，<code>int a = 3;</code>，a和3均在栈中。</li>
+<li>Heap（堆，位于RAM区）：<strong>所有的new对象</strong>存储在堆中。例如，<code>String str = new String(&quot;something&quot;)；</code>，str在栈中，something在堆中。</li>
+<li>常量存储（在代码内部，或者放在ROM中）：为了避免某个常量值被反复实例化，存放可以在编译期就确定的字符串常量、基本类型常量以及基本类型的包装类（Byte, Short, Integer, Long, Character, Boolean，并且对应值小于等于127时），例如：<ul>
+<li><code>String str = &quot;something&quot;</code>，str在栈中，“something”在String类的常量池中。</li>
+<li><code>Integer i1=127</code>，当且仅当包装器要包装的值小于127才能用常量池。</li>
+<li><code>Integer i2=new Integer(12);</code>没用包装器，i2在栈中，12在堆中</li>
+<li><code>public static int a = 1；</code>，a这个变量名在栈中，1在常量池中</li>
+</ul>
+</li>
+<li>非RAM存储：流对象和持久化对象。在流对象中，对象转化成字节流，通常被发送给另一台机器。在持久化对象中，对象被存放在磁盘上。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2015-03-14-jvm-garbage-collection.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015-03-14-sui-ji-sen-lin-xue-xi.html" itemprop="url">
+                  随机森林学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-13T17:58:00+00:00" content="2015-03-13">
+              2015-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015-03-14-sui-ji-sen-lin-xue-xi.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-03-14-sui-ji-sen-lin-xue-xi.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <pre><code>随机森林算法即Random Forest，诞生于上世纪90年代的贝尔实验室。该算法可以用来做分类，聚类，回归等。属于机器学习的内容。
+</code></pre><p><strong>Random Forest算法要点</strong>：随机森林是一个包含多个决策树的分类器，并且其输出的类别是由个别树输出的类别的众数而定。（相当于许多不同领域的专家对数据进行分类判断，然后投票。）</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2015-03-14-sui-ji-sen-lin-xue-xi.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1134,251 +1376,6 @@
 </blockquote>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013-09-25-file-encoding.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013-09-23-tools.html" itemprop="url">
-                  我的利器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-09-23T11:16:00+00:00" content="2013-09-23">
-              2013-09-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013-09-23-tools.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-23-tools.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>古语有云：<strong>工欲善其事，必先利其器</strong>。<br>学习计算机也是这样， 总结最近几年学习计算机专业的经验，我把我认为非常有用的软件，网站，工具等做了下总结：</p>
-<blockquote>
-<ul>
-<li>Sublime Text，一款文本编辑器，跨平台，用起来非常舒服，可称之为神器。</li>
-<li>Git，一个分布式的版本控制系统</li>
-<li>GitHub， 用于使用Git版本控制系统项目的共享虚拟主机服务</li>
-<li>MindManager，思维导图</li>
-<li>VMware，虚拟机</li>
-<li>Powerdesigner，数据库设计软件</li>
-<li>Baidu Cloud，国内速度快，超稳定，容量大的网盘，太好用了！</li>
-<li>MOOC，大规模开放在线课堂</li>
-<li>Evernote，印象笔记，看课程做笔记就靠他了，其中的“马克飞象”扩展特别好用，可以用markdown语法些笔记</li>
-<li>Octopress，写博客的神器</li>
-<li>Raspberry Pi，树莓派，廉价低功耗Linux电脑，任你折腾</li>
-<li>LaTeX，排版利器，写论文必会
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013-09-23-tools.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013-09-21-my-git-command.html" itemprop="url">
-                  我的Git常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-09-20T16:50:00+00:00" content="2013-09-20">
-              2013-09-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013-09-21-my-git-command.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2013-09-21-my-git-command.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>使用Git开发已经有一段时间了，这里我总结了一下常用的Git命令。<br><img src="/images/pic/git_logo.png" class="right" width="130" height="130" title="welcome welcome"></p>
-<h2 id="u8BBE_u7F6E"><a href="#u8BBE_u7F6E" class="headerlink" title="设置"></a>设置</h2><p>设置邮箱和用户名</p>
-<pre><code>git config --global user.email &quot;xu.jin.smile@gmail.com&quot;
-git config --global user.name &quot;GinSmile&quot;
-</code></pre><p>生成SSH Key</p>
-<pre><code>ssh-keygen -t rsa -C &quot;example@163.com&quot;
-....然后提示输入密码什么的
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013-09-21-my-git-command.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
