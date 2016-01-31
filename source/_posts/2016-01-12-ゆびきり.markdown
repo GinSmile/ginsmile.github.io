@@ -4,8 +4,6 @@ date: 2016-01-12 01:17:32
 tags: music
 ---
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=523591&auto=0&height=66"></iframe>
-
 <blockquote class="blockquote-center">
 青い空 白い雲 丸い帽子 		
 飛んでゆく 飛んでゆく 追いかけても 			
@@ -22,6 +20,9 @@ tags: music
 </blockquote>
 
 <!--more-->
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=523591&auto=0&height=66"></iframe>
 			
 歌词大意：
 >	蓝天,白云,圆帽子 	

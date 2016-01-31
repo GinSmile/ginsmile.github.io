@@ -17,7 +17,9 @@ Android底层采用C语言保证效率，上层使用Java简单，快速进行�
 * **Libraries和Android runtime（ART）**，包括SQLite，WebKit，SSL，Surface Management等。**在Androd5.X，ART已经取代Dalvik，采用安装时编译。**每个APP都会分配一个虚拟机来保证互相之间不受干扰。
 *  **Application framework**，包括Activity Manager，Content Providers，Package Manager等。
 *  **Application**，使用NDK和Java开发的App。
+
 <!--more-->
+
 2.Android四大组件
 ------------------
 1. **Activity，交互界面**
