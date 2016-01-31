@@ -57,28 +57,37 @@
 
 
 
-<meta name="description" content="本文为Android的Activity相关知识整理，具体参考了
+<meta name="description" content="本文为Android的ListView相关知识整理，具体参考了
 
-《Android开发艺术探索》第一章
-《Android群英传》第八章
-《第一行代码》第二章">
+《Android群英传》第四章
+《第一行代码》第三章
+
+ListView是Android中最常用的控件，也是最难用的空间之一。ListView用来展示大量数据列表。
+1. ListView的用法流程1.1 新建activity_main.xml此页面作为主页布局页面，添加了一个ListView标签，显示全部数据。
+&amp;lt;Linea">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Activity与Activity调用栈">
-<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-14-Activity与Activity调用栈.html">
+<meta property="og:title" content="Android的ListView使用">
+<meta property="og:url" content="http://ginsmile.github.io/blog/2016-01-31-Android的ListView使用.html">
 <meta property="og:site_name" content="Jyo's Blog">
-<meta property="og:description" content="本文为Android的Activity相关知识整理，具体参考了
+<meta property="og:description" content="本文为Android的ListView相关知识整理，具体参考了
 
-《Android开发艺术探索》第一章
-《Android群英传》第八章
-《第一行代码》第二章">
-<meta property="og:updated_time" content="2016-01-13T10:22:12.000Z">
+《Android群英传》第四章
+《第一行代码》第三章
+
+ListView是Android中最常用的控件，也是最难用的空间之一。ListView用来展示大量数据列表。
+1. ListView的用法流程1.1 新建activity_main.xml此页面作为主页布局页面，添加了一个ListView标签，显示全部数据。
+&amp;lt;Linea">
+<meta property="og:updated_time" content="2016-01-31T03:44:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Activity与Activity调用栈">
-<meta name="twitter:description" content="本文为Android的Activity相关知识整理，具体参考了
+<meta name="twitter:title" content="Android的ListView使用">
+<meta name="twitter:description" content="本文为Android的ListView相关知识整理，具体参考了
 
-《Android开发艺术探索》第一章
-《Android群英传》第八章
-《第一行代码》第二章">
+《Android群英传》第四章
+《第一行代码》第三章
+
+ListView是Android中最常用的控件，也是最难用的空间之一。ListView用来展示大量数据列表。
+1. ListView的用法流程1.1 新建activity_main.xml此页面作为主页布局页面，添加了一个ListView标签，显示全部数据。
+&amp;lt;Linea">
 
 
 
@@ -96,7 +105,7 @@
   };
 </script>
 
-  <title> Activity与Activity调用栈 | Jyo's Blog </title>
+  <title> Android的ListView使用 | Jyo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +254,7 @@
             
             
               
-                Activity与Activity调用栈
+                Android的ListView使用
               
             
           </h1>
@@ -257,8 +266,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-14T04:21:42+08:00" content="2016-01-13">
-              2016-01-13
+            <time itemprop="dateCreated" datetime="2016-01-31T19:20:21+08:00" content="2016-01-31">
+              2016-01-31
             </time>
           </span>
 
@@ -287,8 +296,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016-01-14-Activity与Activity调用栈.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-14-Activity与Activity调用栈.html" itemprop="commentsCount"></span>
+                <a href="/blog/2016-01-31-Android的ListView使用.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2016-01-31-Android的ListView使用.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,13 +318,232 @@
       
 
       
-        <p>本文为Android的Activity相关知识整理，具体参考了</p>
+        <p>本文为Android的ListView相关知识整理，具体参考了</p>
 <ul>
-<li>《Android开发艺术探索》第一章</li>
-<li>《Android群英传》第八章</li>
-<li>《第一行代码》第二章</li>
+<li>《Android群英传》第四章</li>
+<li>《第一行代码》第三章</li>
 </ul>
-<a id="more"></a>
+<p>ListView是Android中最常用的控件，也是最难用的空间之一。ListView用来展示大量数据列表。</p>
+<h2 id="1-_ListView_u7684_u7528_u6CD5_u6D41_u7A0B"><a href="#1-_ListView_u7684_u7528_u6CD5_u6D41_u7A0B" class="headerlink" title="1. ListView的用法流程"></a>1. ListView的用法流程</h2><h1 id="1-1__u65B0_u5EFAactivity_main-xml"><a href="#1-1__u65B0_u5EFAactivity_main-xml" class="headerlink" title="1.1 新建activity_main.xml"></a>1.1 新建activity_main.xml</h1><p>此页面作为主页布局页面，添加了一个ListView标签，显示全部数据。</p>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+    &lt;ListView
+        android:id=&quot;@+id/list_view&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; &gt;
+    &lt;/ListView&gt;
+&lt;/LinearLayout&gt;
+</code></pre><a id="more"></a>
+<h1 id="1-2__u65B0_u5EFAfruit_item-xml"><a href="#1-2__u65B0_u5EFAfruit_item-xml" class="headerlink" title="1.2  新建fruit_item.xml"></a>1.2  新建fruit_item.xml</h1><p>此页面作为item单项的布局文件，显示单项的内容。</p>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; &gt;
+            &lt;ImageView
+                android:id=&quot;@+id/fruit_image&quot;
+                android:layout_width=&quot;wrap_content&quot;
+                android:layout_height=&quot;wrap_content&quot; /&gt;
+            &lt;TextView
+                android:id=&quot;@+id/fruit_name&quot;
+                android:layout_width=&quot;wrap_content&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_gravity=&quot;center&quot;
+                android:layout_marginLeft=&quot;10dip&quot; /&gt;
+    &lt;/LinearLayout&gt;
+</code></pre><h1 id="1-3__u5B9A_u4E49_u4E00_u4E2A_u6570_u636E_u7C7B_u6587_u4EF6Fruit-java"><a href="#1-3__u5B9A_u4E49_u4E00_u4E2A_u6570_u636E_u7C7B_u6587_u4EF6Fruit-java" class="headerlink" title="1.3 定义一个数据类文件Fruit.java"></a>1.3 定义一个数据类文件Fruit.java</h1><pre><code>public class Fruit {
+    private String name;
+    private int imageId;
+    public Fruit(String name, int imageId) {
+        this.name = name;
+        this.imageId = imageId;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getImageId() {
+        return imageId;
+    }
+}
+</code></pre><h1 id="1-4__u5B9A_u4E49_u4E00_u4E2A_u9002_u914D_u5668_u7C7B_u6587_u4EF6FruitAdapter-java"><a href="#1-4__u5B9A_u4E49_u4E00_u4E2A_u9002_u914D_u5668_u7C7B_u6587_u4EF6FruitAdapter-java" class="headerlink" title="1.4 定义一个适配器类文件FruitAdapter.java"></a>1.4 定义一个适配器类文件FruitAdapter.java</h1><pre><code>public class FruitAdapter extends ArrayAdapter&lt;Fruit&gt; {
+    private int resourceId;
+    public FruitAdapter(Context context, int textViewResourceId,
+        List&lt;Fruit&gt; objects) {
+        super(context, textViewResourceId, objects);
+        resourceId = textViewResourceId;
+    }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Fruit fruit = getItem(position); // 获取当前项的Fruit实例
+        View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+        ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
+        TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
+        fruitImage.setImageResource(fruit.getImageId());
+        fruitName.setText(fruit.getName());
+        return view;
+    }
+}
+</code></pre><h1 id="1-5__u521B_u5EFA_u6D3B_u52A8MainActivity-java"><a href="#1-5__u521B_u5EFA_u6D3B_u52A8MainActivity-java" class="headerlink" title="1.5 创建活动MainActivity.java"></a>1.5 创建活动MainActivity.java</h1><pre><code>public class MainActivity extends Activity {
+    private List&lt;Fruit&gt; fruitList = new ArrayList&lt;Fruit&gt;();
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initFruits(); //  初始化水果数据
+        FruitAdapter adapter = new FruitAdapter(MainActivity.this,
+        R.layout.fruit_item, fruitList);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+
+        listView.setAdapter(adapter);
+    }
+    private void initFruits() {
+        Fruit apple = new Fruit(&quot;Apple&quot;, R.drawable.apple_pic);
+        fruitList.add(apple);
+        Fruit banana = new Fruit(&quot;Banana&quot;, R.drawable.banana_pic);
+        fruitList.add(banana);
+        Fruit orange = new Fruit(&quot;Orange&quot;, R.drawable.orange_pic);
+        fruitList.add(orange);
+    }
+}
+</code></pre><h2 id="2-__u4F7F_u7528ViewHolder_u6A21_u5F0F_u4F18_u5316ListView"><a href="#2-__u4F7F_u7528ViewHolder_u6A21_u5F0F_u4F18_u5316ListView" class="headerlink" title="2. 使用ViewHolder模式优化ListView"></a>2. 使用ViewHolder模式优化ListView</h2><p>这里主要修改了getView()方法。<br>在子项被滚动到屏幕内的时候，会调用getView()。原始的getView()方法如下：</p>
+<pre><code>@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    Fruit fruit = getItem(position); // 获取当前项的Fruit实例
+    View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+    ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
+    TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
+    fruitImage.setImageResource(fruit.getImageId());
+    fruitName.setText(fruit.getName());
+    return view;
+}
+</code></pre><p>通过<code>getItem(position)</code> 获取当前项的Fruit实例，然后通过<code>LayoutInflater</code>来为这个子项加载我们传入的布局。接着调用View的findViewById()方法获得控件实例。</p>
+<blockquote>
+<p><strong>缺点：每次在调用getView()时都通过findViewById()实例化控件。</strong></p>
+</blockquote>
+<p>ViewHolder模式充分利用了ListView的视图缓存机制，避免了每次在调用getView()时都去通过findViewById()实例化控件。<strong>提高效率50%以上！！</strong></p>
+<p>只需要修改适配器类FruitAdapter.java中的getView()方法就可以。</p>
+<pre><code>@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    Fruit fruit = getItem(position);
+    ViewHolder holder = null;
+    View view;
+    if(convertView == null){
+        view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+        viewHolder = new ViewHolder();
+        viewHolder.fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
+        viewHolder.fruitName = (TextView) view.findViewById(R.id.fruit_name);
+        view.setTag(viewHolder); //  将ViewHolder 存储在View 
+    }else{
+        view = convertView;
+        viewHolder = (ViewHolder)view.getTag();
+    }
+
+    viewHolder.fruitImage.setImageResource(fruit.getImageId());
+    viewHolder.fruitName.setText(fruit.getName());
+    return view;
+}
+
+public final class ViewHolder{
+    public ImageView fruitImage;
+    public TextView fruitName;
+}
+</code></pre><h2 id="3-_ListView_u5C0F_u6280_u5DE7"><a href="#3-_ListView_u5C0F_u6280_u5DE7" class="headerlink" title="3. ListView小技巧"></a>3. ListView小技巧</h2><ul>
+<li><p>分隔线，在ListView标签中设置如下就会在ListView中得到一个颜色为灰色，高为10dp的分隔线。</p>
+<pre><code>android:divider=&quot;@android:color/darker_gray&quot;
+android:dividerHeight=&quot;10dp&quot;
+</code></pre></li>
+<li><p>滚动条</p>
+<pre><code>android:scrollbars=&quot;none&quot;
+</code></pre></li>
+<li><p>取消点击后的回馈效果</p>
+<pre><code>android:listSelector=&quot;#00000000&quot;
+或者 android:listSelector=&quot;@android:color/transparent&quot;
+</code></pre></li>
+<li><p>设置显示在第N项</p>
+<pre><code>listView.setSelection(N); //瞬间完成移动
+//以下为平滑移动
+listView.smoothScrollBy(offset);
+listView.smoothScrollBy(index);
+listView.smoothScrollBy(distance, duration);
+</code></pre></li>
+<li><p>设置空ListView，当数据为空时，可以显示的一个View</p>
+<ul>
+<li><p>在ListView标签的同级添加一个id为<code>empty_view</code>的View</p>
+<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot; &gt;
+&lt;ListView
+    android:id=&quot;@+id/list_view&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+&lt;/ListView&gt;
+&lt;TextView
+        android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:text=&quot;这是无数据时显示的信息&quot;
+/&gt;
+&lt;/LinearLayout&gt;
+</code></pre></li>
+<li><p>然后在MainActivity.java中设置</p>
+<pre><code>listView.setEmptyView(findViewById(R.id.empty_view));
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-__u52A8_u6001_u4FEE_u6539ListView"><a href="#4-__u52A8_u6001_u4FEE_u6539ListView" class="headerlink" title="4. 动态修改ListView"></a>4. 动态修改ListView</h2><p>笨方法是重新设置adapter，但这样效率特别低。所以，要用notifyDataSetChanged()方法。</p>
+<pre><code>Fruit mango = new Fruit(&quot;Mango&quot;, R.drawable.mango_pic);
+fruitList.add(mango);
+adapter.notifyDataSetChanged();
+</code></pre><blockquote>
+<p><strong>注意：此fruitList必须和之前是同一个对象！！！</strong>如果新建了一个对象fruitList2，然后fruitList = fruitList2，这样是行不通的！！！因为并没有改变原始的对象。</p>
+</blockquote>
+<h2 id="5-__u6ED1_u52A8_u76D1_u542C"><a href="#5-__u6ED1_u52A8_u76D1_u542C" class="headerlink" title="5. 滑动监听"></a>5. 滑动监听</h2><ul>
+<li><p><a href="http://developer.android.com/reference/android/view/View.OnTouchListener.html" target="_blank" rel="external">View.OnTouchListener</a></p>
+<pre><code>listView.setOnTouchListener(new View.OnTouchListener(){
+      @Override
+      public boolean onTouch(View v, MotionEvent event){
+                switch(event.getAction()){
+                      case MotionEvent.ACTION_DOWN:
+                              //触摸时
+                              break;
+                      case MotionEvent.ACTION_MOVE:
+                              //移动时
+                              break;
+                      case MotionEvent.ACTION_UP:
+                              //离开时
+                              break;
+                }     
+     }
+});   
+</code></pre></li>
+<li><p><a href="http://developer.android.com/reference/android/widget/AbsListView.OnScrollListener.html" target="_blank" rel="external">AbsListView.OnScrollListener</a>   </p>
+<pre><code>listView.setOnScrollListener(new OnScrollListener(){
+      @Override
+      public boolean onScrollStateChanged(AbsListView view, int scrollState){
+                switch(scrollState){
+                       case OnScrollListener.SCROLL_STATE_IDLE:
+                              //滑动停止时
+                              break;
+                       case OnScrollListener.SCROLL_STATE_IDLE:
+                              //正在滚动时
+                              break;
+                       case OnScrollListener.SCROLL_STATE_IDLE:
+                              //手指抛动时，手指离开后随着惯性继续滑动的状态
+                              break;
+                }
+     }   
+     @Override
+      public boolean onScroll(AbsListView view,
+                          int firstVisibleItem,  //第一个能看见的item的ID
+                          int visibleItemCount,  //当前能看见的item总数
+                          int totalItemCount){  //整个ListView的item总数
+              //滚动时一直调用
+              //do something
+      }
+
+}
+</code></pre></li>
+</ul>
 
       
     </div>
@@ -327,17 +555,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016-01-14-Android系统信息.html" rel="next" title="Android系统信息">
-                <i class="fa fa-chevron-left"></i> Android系统信息
+              <a href="/blog/2016-01-14-Activity与Activity调用栈.html" rel="next" title="Activity与Activity调用栈">
+                <i class="fa fa-chevron-left"></i> Activity与Activity调用栈
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016-01-31-Android的ListView使用.html" rel="prev" title="Android的ListView使用">
-                Android的ListView使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -352,10 +576,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2016-01-14-Activity与Activity调用栈.html"
-     data-title="Activity与Activity调用栈"
+        <div class="ds-share flat" data-thread-key="/blog/2016-01-31-Android的ListView使用.html"
+     data-title="Android的ListView使用"
      data-content=""
-     data-url="http://ginsmile.github.io//blog/2016-01-14-Activity与Activity调用栈.html">
+     data-url="http://ginsmile.github.io//blog/2016-01-31-Android的ListView使用.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -382,8 +606,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2016-01-14-Activity与Activity调用栈.html"
-           data-title="Activity与Activity调用栈" data-url="http://ginsmile.github.io//blog/2016-01-14-Activity与Activity调用栈.html">
+      <div class="ds-thread" data-thread-key="/blog/2016-01-31-Android的ListView使用.html"
+           data-title="Android的ListView使用" data-url="http://ginsmile.github.io//blog/2016-01-31-Android的ListView使用.html">
       </div>
     
   </div>
@@ -487,7 +711,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_ListView_u7684_u7528_u6CD5_u6D41_u7A0B"><span class="nav-text">1. ListView的用法流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1__u65B0_u5EFAactivity_main-xml"><span class="nav-text">1.1 新建activity_main.xml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2__u65B0_u5EFAfruit_item-xml"><span class="nav-text">1.2  新建fruit_item.xml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3__u5B9A_u4E49_u4E00_u4E2A_u6570_u636E_u7C7B_u6587_u4EF6Fruit-java"><span class="nav-text">1.3 定义一个数据类文件Fruit.java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-4__u5B9A_u4E49_u4E00_u4E2A_u9002_u914D_u5668_u7C7B_u6587_u4EF6FruitAdapter-java"><span class="nav-text">1.4 定义一个适配器类文件FruitAdapter.java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-5__u521B_u5EFA_u6D3B_u52A8MainActivity-java"><span class="nav-text">1.5 创建活动MainActivity.java</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-__u4F7F_u7528ViewHolder_u6A21_u5F0F_u4F18_u5316ListView"><span class="nav-text">2. 使用ViewHolder模式优化ListView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_ListView_u5C0F_u6280_u5DE7"><span class="nav-text">3. ListView小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-__u52A8_u6001_u4FEE_u6539ListView"><span class="nav-text">4. 动态修改ListView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-__u6ED1_u52A8_u76D1_u542C"><span class="nav-text">5. 滑动监听</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
